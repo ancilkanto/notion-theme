@@ -1,0 +1,59 @@
+// Transition
+@mixin transition($item,$time,$easefunction,$delay) {
+    -webkit-transition: $item $time $easefunction $delay;
+    -moz-transition: $item $time $easefunction $delay;
+    -ms-transition: $item $time $easefunction $delay;
+    -o-transition: $item $time $easefunction $delay;
+    transition: $item $time $easefunction $delay;
+}
+
+// // Cubic Bezier
+// @mixin bezier($property,$duration,$name,$x1,$y1,$x2,$y2,$delay) {
+//     -webkit-transition: $property $duration $name( $x1 $y1 $x2 $y2 ) $delay;
+//     -moz-transition: $property $duration $name( $x1 $y1 $x2 $y2 ) $delay;
+//     -ms-transition: $property $duration $name( $x1 $y1 $x2 $y2 ) $delay;
+//     -o-transition: $property $duration $name( $x1 $y1 $x2 $y2 ) $delay;
+//     transition: $property $duration $name( $x1 $y1 $x2 $y2 ) $delay;
+// }
+
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes #{$animation-name} {
+        @content;
+    }
+    @-moz-keyframes #{$animation-name} {
+        @content;
+    }
+    @-ms-keyframes #{$animation-name} {
+        @content;
+    }
+    @-o-keyframes #{$animation-name} {
+        @content;
+    }
+    @keyframes #{$animation-name} {
+        @content;
+    }
+}
+
+@mixin animation($str) {
+  -webkit-animation: #{$str};
+  -moz-animation: #{$str};
+  -ms-animation: #{$str};
+  -o-animation: #{$str};
+  animation: #{$str};
+}
+
+// Shadow
+@mixin shadow($x,$y,$blur,$spread,$r,$g,$b,$a) {
+    -webkit-box-shadow: $x+px $y+px $blur+px $spread+px rgba($r, $g, $b, $a);
+    -moz-box-shadow: $x+px $y+px $blur+px $spread+px rgba($r, $g, $b, $a);
+    box-shadow: $x+px $y+px $blur+px $spread+px rgba($r, $g, $b, $a);
+}
+
+// Translate
+@mixin prefix($property, $value, $prefixes: ()) {
+     @each $prefix in $prefixes{
+        #{'-' + $prefix + '-' + $property}: $value;
+    }
+    // Output standard non-prefixed declaration
+    #{$property}: $value;
+}

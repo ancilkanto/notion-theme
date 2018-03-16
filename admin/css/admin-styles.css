@@ -1,0 +1,98 @@
+/* THEME OPTIONS ICON STYLE */
+#toplevel_page_notion-options .wp-menu-image img{
+    opacity: 1;
+    padding: 6px 0 0;
+    filter: alpha(opacity=100);
+    max-width: 20px;
+}
+
+/* CS NAV ICON STYLES */
+.cs-framework .cs-nav .cs-icon{
+    color: red;
+    width: 25px;
+    font-size: 20px
+}
+.cs-framework .cs-nav .blue.cs-icon{
+    color: blue;
+}
+.cs-framework .cs-nav .green.cs-icon{
+    color: green;
+}
+.cs-framework .cs-nav .orange.cs-icon{
+    color: orange;
+}
+.cs-framework .cs-nav .grey.cs-icon{
+    color: grey;
+}
+.cs-framework .cs-nav .violet.cs-icon{
+    color: violet;
+}
+.cs-framework .cs-nav .darkseagreen.cs-icon{
+    color: darkseagreen;
+}
+
+/* CS HEADER STYLES */
+.cs-framework .cs-header{
+    background-color: #00a5fa;
+}
+.cs-framework .cs-header h1{
+    color: #ffffff;
+    line-height: 32px;
+}
+.cs-framework .cs-header h1 small{
+    color: #000000;
+}
+
+/* CS HEADER BUTTON STYLES */
+.cs-header .button{
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: 500;
+    text-transform: uppercase;
+    background: #ffffff;
+    color: #000000;
+    border: none;
+    box-shadow: none;
+    text-shadow: none;
+    height: 35px;
+    padding: 0 25px 1px;
+    border-radius: 1px;
+    transition: all ease-in-out 0.3s;
+}
+.cs-header .button:hover{
+    background: #000000;
+    border-color: none;
+    color: #ffffff;
+}
+.cs-header .button.button-primary{
+    background: #000000;
+    color: #efefef;
+}
+.cs-header .button.button-primary:hover{
+    background: #ffffff;
+    border-color: none;
+    color: #000000;
+}
+.cs-framework .cs-header fieldset input{
+    margin: 0 5px;
+    line-height: 25px;
+}
+
+/* DROPDOWN JS STYLES */
+.dropdownjs{
+    width: 60%;
+}
+.dropdownjs > ul > li, .fakeinput .content{
+    font-size: 14px;
+    line-height: 21px;
+}
+.my-dropdown .my-option span, .fakebg{
+    float: left;
+    margin-right: 20px;
+    width: 30px;
+    height: 22px;
+    margin-top: 0px;
+}
+.fakebg{
+    position: unset;
+}
