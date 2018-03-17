@@ -476,14 +476,14 @@
 }));
 
 jQuery(document).ready(function($) {
-  if($('.color-palette').length){
+  if($('.color-palette option').length){
       $('.color-palette').dropdown({
           "dropdownClass": "my-dropdown",
           "optionClass": "my-option"
       });
   }
 
-  if($('.custom-colors').length){
+  if($('.custom-colors option').length){
       $('.cmb2_select').dropdown({
           "dropdownClass": "my-dropdown",
           "optionClass": "my-option"
@@ -491,8 +491,8 @@ jQuery(document).ready(function($) {
   }
 
   $('body').live("change", function () {
-      if($('.kc-params-popup .custom-colors').length){
-          $('.custom-colors').dropdown({
+      if($('.kc-params-popup .custom-colors option').length){
+          $('.custom-colors ').dropdown({
                "dropdownClass": "my-dropdown ample-color-dropdown",
                "optionClass": "my-option ample-color-option"
           });
