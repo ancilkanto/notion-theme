@@ -88,14 +88,6 @@ function notion_allowed_html($text)
   );
 }
 
-
-define( 'CS_ACTIVE_LIGHT_THEME',  true  ); // default false
-define( 'CS_ACTIVE_FRAMEWORK',   true  ); // default true
-define( 'CS_ACTIVE_METABOX',     true ); // default true
-define( 'CS_ACTIVE_TAXONOMY',    false ); // default true
-define( 'CS_ACTIVE_SHORTCODE',   false ); // default true
-define( 'CS_ACTIVE_CUSTOMIZE',   false ); // default true
-
 function notion_font_setup()
 {
   $fonts = notion_get_option( 'notion_font_group' );
@@ -159,9 +151,29 @@ function notion_font_setup()
        }else{
          $font_array[ $notion_font_title ] = $font['notion_font_group_fonts']['family'];
        }
+     }else{
+       $color_array['No font defined in theme options'] = '';
      }
    return $font_array;
  }
+
+function notion_get_font_size()
+{
+  $font_sizes = notion_get_option( 'notion_font_size_group' );
+  $font_size_array = array();
+  if($font_size){
+    foreach ($font_sizes as $font_size ) {
+      $notion_font_size_title = strtolower($font['notion_font_title']);
+      $notion_font_size_title = str_replace(' ', '-', $notion_font_size_title);
+      $notion_font_size_title = preg_replace('/[^A-Za-z0-9\-]/', '', $notion_font_size_title);
+
+      $color_array[ $notion_font_size_title ] = $font_size['notion_font_size_title'];
+    }
+  }else{
+    $color_array['No font size defined in theme options'] = '';
+  }
+  return $font_size_array;
+}
 
 function notion_get_color_palette()
 {
@@ -177,6 +189,8 @@ function notion_get_color_palette()
       $notion_color_title = preg_replace('/[^A-Za-z0-9\-]/', '', $notion_color_title);
 
       $color_array[ $notion_color_title.'|'.$color_id ] = $color['notion_color_picker'];
+    }else{
+      $color_array['No color defined in theme options'] = '|';
     }
   return $color_array;
 }

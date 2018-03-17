@@ -476,7 +476,7 @@
 }));
 
 jQuery(document).ready(function($) {
-  if($('.color-palette').length){
+  if($('.color-palette option').length){
       $('.color-palette').dropdown({
           "dropdownClass": "my-dropdown",
           "optionClass": "my-option"
