@@ -1,5 +1,8 @@
 jQuery(document).ready(function($){
 
+    //CS SELECT FIELD STYLES
+    $( '.cs-framework.cs-option-framework form select.notion-select' ).selectmenu();
+
     // CS SLIDER FIELD
     $( '.cs-field-slider' ).each(function() {
         var dis     = $( this ),
@@ -113,20 +116,18 @@ jQuery(document).ready(function($){
 
 
     // SET LOGO HEIGHT USING SLIDER
-    $('.cs-field-slider input').change(function () {
+    $('.cs-field-slider input.set-logo-width').change(function () {
         var targetImageWrap = $(this).attr('data-link-to');
         var targetImage = $('.'+targetImageWrap).closest('.cs-fieldset').find('img');
         targetImage.css('height', $(this).val());
     });
     // SHOULD BE AT BOTTOM
     try{
-    $('.cs-field-slider').each(function () {
-        var inputElement = $(this).find('input');
-
-        var targetImageWrap = inputElement.attr('data-link-to');
-        var targetImage = $('.'+targetImageWrap).closest('.cs-fieldset').find('img');
-        targetImage.css('height', $(this).find('input').val());
-    });
+        $('.cs-field-slider input.set-logo-width').each(function () {
+            var targetImageWrap = $(this).attr('data-link-to');
+            var targetImage = $('.'+targetImageWrap).closest('.cs-fieldset').find('img');
+            targetImage.css('height', $(this).val());
+        });
     }
     catch(err){
         return false;
