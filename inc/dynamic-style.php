@@ -14,6 +14,18 @@ function notion_raw_color_style()
         }
     ';
 
+    $colors = notion_get_option( 'notion_color_palette' );
+    if($colors)
+    foreach ($colors as $color) {
+        $color_hex = $color['notion_color_picker'];
+        $color_id = $color['notion_color_id'];
+        $notion_raw_color_style .= '.'.$color_id.'{ color: '.$color_hex.'; }';
+        $notion_raw_color_style .= '.'.$color_id.' a{ color: '.$color_hex.'; }';
+        $notion_raw_color_style .= '.'.$color_id.'-bg{ background-color: '.$color_hex.'; }';
+    }
+
+
+
     return $notion_raw_color_style;
 }
 

@@ -164,14 +164,79 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 47px;
   line-height: 54px; }
 
-/*----------------------------------------------------------------------------------------------------------------*/
-/* FONT CLASSESS */
-/*----------------------------------------------------------------------------------------------------------------*/
-.font-01 {
-  font-family: "Montserrat", sans-serif; }
+.uppercase{
+  text-transform: uppercase;
+}
+.lowercase{
+  text-transform: lowercase;
+}
 
-.font-02 {
-  font-family: "Open Sans", sans-serif; }
+
+.line-height-half{
+  line-height: 0.5;
+}
+.line-height-threefourth{
+  line-height: 0.75;
+}
+.line-height-one{
+  line-height: 1;
+}
+.line-height-one-quarter{
+  line-height: 1.25;
+}
+.line-height-one-half{
+  line-height: 1.5;
+}
+.line-height-one-threefourth{
+  line-height: 1.75;
+}
+.line-height-two{
+  line-height: 2;
+}
+
+.letter-space-0{
+  letter-spacing: 0px;
+}
+.letter-space--1{
+  letter-spacing: -1px;
+}
+.letter-space-1{
+  letter-spacing: 1px;
+}
+.letter-space-2{
+  letter-spacing: 2px;
+}
+.letter-space-3{
+  letter-spacing: 3px;
+}
+.letter-space-4{
+  letter-spacing: 4px;
+}
+.letter-space-6{
+  letter-spacing: 6px;
+}
+.letter-space-8{
+  letter-spacing: 8px;
+}
+.letter-space-10{
+  letter-spacing: 10px;
+}
+.letter-space-12{
+  letter-spacing: 12px;
+}
+
+.text-left{
+  text-align: left;
+}
+.text-right{
+  text-align: right;
+}
+.text-center{
+  text-align: center;
+}
+.text-justify{
+  text-align: justify;
+}
 
 /*---------------------------------------------------------------------------------------------------------------*/
 /* 03 -  HEADER & NAVIGATION */
@@ -626,3 +691,14 @@ h1, h2, h3, h4, h5, h6 {
 
 .header-content-block .cart-icon:hover {
   color: #00CCD6; }
+
+.notion-text-block{
+  display: inline-block;
+  height: auto;
+  width: 100%;
+}
+.notion-text-block span{
+  display: inline-block;
+  width: auto;
+  float: none;
+}

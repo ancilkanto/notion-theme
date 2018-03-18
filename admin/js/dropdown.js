@@ -490,12 +490,27 @@ jQuery(document).ready(function($) {
       });
   }
 
-  $('body').live("change", function () {
-      if($('.kc-params-popup .custom-colors option').length){
-          $('.custom-colors ').dropdown({
-               "dropdownClass": "my-dropdown ample-color-dropdown",
-               "optionClass": "my-option ample-color-option"
-          });
-      }
+  $('body').on('DOMNodeInserted',function (){
+      setTimeout(function(){
+        if($('.kc-params-popup .custom-colors option').length){
+            $('.custom-colors ').dropdown({
+                 "dropdownClass": "my-dropdown ample-color-dropdown",
+                 "optionClass": "my-option ample-color-option"
+            });
+        }
+        
+      },100);
   });
+
+
+  $('body').on('DOMNodeInserted',function (){
+      setTimeout(function(){
+        if($('.notion_text_block_wrpop .wp-editor-tabs').length){
+            $('.wp-switch-editor.switch-html').trigger('click');
+        }
+        
+      },100);
+  });
+  
+  
 });

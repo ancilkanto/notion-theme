@@ -178,6 +178,7 @@ display: inline-block;
 }
 .ample-color-dropdown .fakebg{
   top: 16px;
+  transform: translateY(5px);
 }
 .ample-color-dropdown .my-option span{
   margin-top: 9px;

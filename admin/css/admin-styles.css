@@ -96,3 +96,7 @@
 .fakebg{
     position: unset;
 }
+
+.notion_text_block_wrpop .wp-editor-tools, .notion_text_block_wrpop .mce-toolbar-grp, .notion_text_block_wrpop .quicktags-toolbar{
+    display: none;
+}
