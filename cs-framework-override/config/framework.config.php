@@ -316,6 +316,7 @@ $options[]      = array(
             'max'     => 120,
             'unit'    => 'px',
           ),
+          'class'   => 'set-logo-width',
         ),
         array(
           'id'        => 'notion_logo_mobile',

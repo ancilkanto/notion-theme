@@ -41,3 +41,16 @@ function notion_generate_absolute_color_style()
 
     return $absolute_color_styles;
 }
+
+
+function notion_generate_font_style(){
+    $font_style = '';
+
+    $fonts = notion_get_fonts_group();
+    if($fonts)
+    foreach ($fonts as $key => $value) {
+        $font_style .= ".".$key." { font-family: '".$value."'}";
+    }
+
+    return $font_style;
+}

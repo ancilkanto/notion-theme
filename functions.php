@@ -148,16 +148,14 @@ function notion_font_setup()
    $font_array = array();
    if($fonts)
      foreach ($fonts as $font) {
-       $notion_font_title = strtolower($font['notion_font_title']);
-       $notion_font_title = str_replace(' ', '-', $notion_font_title);
-       $notion_font_title = preg_replace('/[^A-Za-z0-9\-]/', '', $notion_font_title);
+       
        if (array_key_exists('notion_font_source_switch', $font)){
-         $font_array[ $notion_font_title ] = $font['notion_custom_font_name'];
+         $font_array[ $font['notion_font_id'] ] = $font['notion_custom_font_name'];
        }else{
-         $font_array[ $notion_font_title ] = $font['notion_font_group_fonts']['family'];
+         $font_array[ $font['notion_font_id'] ] = $font['notion_font_group_fonts']['family'];
        }
      }else{
-       $color_array['No font defined in theme options'] = '';
+       $font_array['-'] = 'No font defined in theme options';
      }
    return $font_array;
  }
@@ -168,14 +166,12 @@ function notion_get_font_size()
   $font_size_array = array();
   if($font_sizes){
     foreach ($font_sizes as $font_size ) {
-      $notion_font_size_title = strtolower($font_size['notion_font_size_title']);
-      $notion_font_size_title = str_replace(' ', '-', $notion_font_size_title);
-      $notion_font_size_title = preg_replace('/[^A-Za-z0-9\-]/', '', $notion_font_size_title);
+      
 
-      $font_size_array[ $notion_font_size_title ] = $font_size['notion_font_size_title'];
+      $font_size_array[ $font_size['notion_font_size_id'] ] = $font_size['notion_font_size_title'];
     }
   }else{
-    $font_size_array['No font size defined in theme options'] = '';
+    $font_size_array['-'] = 'No font size defined in theme options';
   }
   return $font_size_array;
 }
@@ -196,7 +192,7 @@ function notion_get_color_palette()
 
       $color_array[ $notion_color_title.'|'.$color_id ] = $color['notion_color_picker'];
     }else{
-      $color_array['No color defined in theme options'] = '|';
+      $color_array['-|-'] = 'No color defined in theme options';
     }
   return $color_array;
 }
@@ -239,7 +235,7 @@ function notion_custom_css(){
     wp_enqueue_style('custom-style',get_template_directory() . '/stylesheets/custom-style.css');
     require_once(get_template_directory().'/inc/dynamic-style.php');
 
-    $notion_custom_css = notion_generate_absolute_color_style() . esc_html(notion_get_option('notion_ace_css_editor'));
+    $notion_custom_css = notion_generate_absolute_color_style() .' '. esc_html(notion_get_option('notion_ace_css_editor')) .' '. notion_generate_font_style();
 
     wp_add_inline_style( 'custom-style', $notion_custom_css );
 }

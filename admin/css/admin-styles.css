@@ -100,3 +100,16 @@
 .notion_text_block_wrpop .wp-editor-tools, .notion_text_block_wrpop .mce-toolbar-grp, .notion_text_block_wrpop .quicktags-toolbar{
     display: none;
 }
+
+.kc-element.notion_text_block .admin-view.text{
+    color: #444;
+    font-size: 13px;
+    line-height: 1.4em;
+    font-style: inherit;
+    width: 100%;
+    padding: 10px 9px;
+    display: block;
+    background: #fff;
+    margin-left: -9px;
+    margin-bottom: -7px !important;
+}
