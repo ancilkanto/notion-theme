@@ -20,11 +20,11 @@ if (!is_admin()){
 }
 
 function notion_admin_scripts(){
-  wp_enqueue_script("ace-scripts", "https://ace.c9.io/build/src-min-noconflict/ace.js", array(), false, true);
-  wp_enqueue_script("ace-init", get_template_directory_uri(). "/admin/js/ace-init.js", array(), false, true);
   wp_enqueue_script("dropdown-scripts", get_template_directory_uri(). "/admin/js/dropdown.js", array(), false, true);
   wp_enqueue_script("jquery-ui-script", get_template_directory_uri(). "/admin/js/jquery-ui.js", array(), false, true);
   wp_enqueue_script("cs-addon-scripts", get_template_directory_uri(). "/admin/js/cs-addons.js", array(), false, true);
+  wp_enqueue_script("ace-scripts", "https://ace.c9.io/build/src-min-noconflict/ace.js", array(), false, true);
+  wp_enqueue_script("ace-init", get_template_directory_uri(). "/admin/js/ace-init.js", array(), false, true);
 }
 
 function notion_admin_styles()
@@ -93,16 +93,19 @@ function notion_font_setup()
   $fonts = notion_get_option( 'notion_font_group' );
   $font_details = '';
   $font_syntax_array = array();
+  // var_dump($fonts);
   if($fonts)
     foreach ($fonts as $font) {
       $font_weight_all = $font_name = $font_syntax = '';
       if (!array_key_exists('notion_font_source_switch', $font)){
         $font_name .= str_replace(' ', '+', $font['notion_font_group_fonts']['family']);
         $font_syntax .= $font_name.':';
-        $font_weights = $font['notion_font_group_fontweight'];
-        foreach ($font_weights as $font_weight) {
+        if($font['notion_font_group_fontweight'] !== ''){
+          $font_weights = $font['notion_font_group_fontweight'];
+          foreach ($font_weights as $font_weight) {
             $font_weight_all .= $font_weight;
             $font_weight_all .= ',';
+          }
         }
         $font_weight_all = rtrim($font_weight_all, ',');
         $font_syntax .= $font_weight_all;
@@ -161,19 +164,20 @@ function notion_get_font_size()
 {
   $font_sizes = notion_get_option( 'notion_font_size_group' );
   $font_size_array = array();
-  if($font_size){
+  if($font_sizes){
     foreach ($font_sizes as $font_size ) {
-      $notion_font_size_title = strtolower($font['notion_font_title']);
+      $notion_font_size_title = strtolower($font_size['notion_font_size_title']);
       $notion_font_size_title = str_replace(' ', '-', $notion_font_size_title);
       $notion_font_size_title = preg_replace('/[^A-Za-z0-9\-]/', '', $notion_font_size_title);
 
-      $color_array[ $notion_font_size_title ] = $font_size['notion_font_size_title'];
+      $font_size_array[ $notion_font_size_title ] = $font_size['notion_font_size_title'];
     }
   }else{
-    $color_array['No font size defined in theme options'] = '';
+    $font_size_array['No font size defined in theme options'] = '';
   }
   return $font_size_array;
 }
+
 
 function notion_get_color_palette()
 {
@@ -225,7 +229,7 @@ function notion_get_line_heights()
     'line-height-two' => esc_html__('Letter Spacing 2', 'notion'),
   );
 
-  return $letter_height;
+  return $line_height;
 }
 
 function notion_custom_css(){

@@ -1,5 +1,4 @@
 jQuery(document).ready(function($){
-
     //CS SELECT FIELD STYLES
     $( '.cs-framework.cs-option-framework form select.notion-select' ).selectmenu();
 
@@ -55,7 +54,6 @@ jQuery(document).ready(function($){
     // ADD UNIQUE ID TO FONT GROUP
     $(document).on('click', '.cs-element-font-family .cs-add-group', function () {
         setTimeout(function () {
-
             var fontIdField = $('.cs-element-font-family .cs-groups .cs-group:last-child').find('.notion-font-id');
             var generator = new IDGenerator();
             fontIdField.val('notion-font-'+generator.generate());
@@ -65,7 +63,6 @@ jQuery(document).ready(function($){
     // ADD UNIQUE ID TO COLOR PALETTE GROUP
     $(document).on('click', '.cs-element-font-sizes .cs-add-group', function () {
         setTimeout(function () {
-
             var fontIdField = $('.cs-element-font-sizes .cs-groups .cs-group:last-child').find('.notion-font-size-id');
             var generator = new IDGenerator();
             fontIdField.val('notion-font-size'+generator.generate());
@@ -95,6 +92,7 @@ jQuery(document).ready(function($){
     $(window).scroll(function () {
         var scroll = getCurrentScroll();
         if(scroll > 20){
+
             $('.cs-framework .cs-header').addClass('cs-header-fixed');
             $('.cs-framework .cs-content, .cs-framework .cs-nav ').addClass('cs-pos-adjustment');
         }
@@ -116,14 +114,14 @@ jQuery(document).ready(function($){
 
 
     // SET LOGO HEIGHT USING SLIDER
-    $('.cs-field-slider input.set-logo-width').change(function () {
+    $('.cs-field-slider input.set-logo-height').change(function () {
         var targetImageWrap = $(this).attr('data-link-to');
         var targetImage = $('.'+targetImageWrap).closest('.cs-fieldset').find('img');
         targetImage.css('height', $(this).val());
     });
     // SHOULD BE AT BOTTOM
     try{
-        $('.cs-field-slider input.set-logo-width').each(function () {
+        $('.cs-field-slider input.set-logo-height').each(function () {
             var targetImageWrap = $(this).attr('data-link-to');
             var targetImage = $('.'+targetImageWrap).closest('.cs-fieldset').find('img');
             targetImage.css('height', $(this).val());

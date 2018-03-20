@@ -484,10 +484,10 @@ jQuery(document).ready(function($) {
   }
 
   if($('.custom-colors').length){
-      $('.cmb2_select').dropdown({
-          "dropdownClass": "my-dropdown",
-          "optionClass": "my-option"
-      });
+    $('.cmb2_select').dropdown({
+        "dropdownClass": "my-dropdown",
+        "optionClass": "my-option"
+    });
   }
 
   $('body').live("change", function () {
