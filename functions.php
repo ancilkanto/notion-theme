@@ -21,7 +21,6 @@ if (!is_admin()){
 
 function notion_admin_scripts(){
 
-
   wp_enqueue_script("dropdown-scripts", get_template_directory_uri(). "/admin/js/dropdown.js", array(), false, true);
   wp_enqueue_script("jquery-ui-script", get_template_directory_uri(). "/admin/js/jquery-ui.js", array(), false, true);
   wp_enqueue_script("cs-addon-scripts", get_template_directory_uri(). "/admin/js/cs-addons.js", array(), false, true);
@@ -166,12 +165,14 @@ function notion_get_font_size()
   $font_size_array = array();
   if($font_sizes){
     foreach ($font_sizes as $font_size ) {
+
       
 
       $font_size_array[ $font_size['notion_font_size_id'] ] = $font_size['notion_font_size_title'];
     }
   }else{
     $font_size_array['-'] = 'No font size defined in theme options';
+
   }
   return $font_size_array;
 }

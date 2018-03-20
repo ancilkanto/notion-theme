@@ -488,6 +488,7 @@ jQuery(document).ready(function($) {
           "dropdownClass": "my-dropdown",
           "optionClass": "my-option"
       });
+
   }
 
   $('body').on('DOMNodeInserted',function (){

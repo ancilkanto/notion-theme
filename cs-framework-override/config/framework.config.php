@@ -100,6 +100,7 @@ $options[]      = array(
             'multiple'         => 'only-key',
             'style'            => 'width: 200px;'
           ),
+          'default' => '400',
           'dependency'         => array( 'notion_font_source_switch', '==', 'false' ),
         ),
 
@@ -196,6 +197,7 @@ $options[]      = array(
   'title'       => esc_html__('Color Palatte', 'notion'),
   'icon'        => 'blue ion ion-paintbucket',
   'fields'      => array(
+
     array(
       'id'              => 'notion_color_palette',
       'type'            => 'group',
@@ -292,7 +294,7 @@ $options[]      = array(
 
       'fields'      => array(
         array(
-          'id'        => 'notion_logo',
+          'id'        => 'notion_logo_dark',
           'type'      => 'image_extend',
           'title'     => esc_html__('Logo', 'notion'),
           'desc'      => esc_html__('Upload or select logo', 'notion'),
@@ -316,7 +318,7 @@ $options[]      = array(
             'max'     => 120,
             'unit'    => 'px',
           ),
-          'class'   => 'set-logo-width',
+          'class'   => 'set-logo-height',
         ),
         array(
           'id'        => 'notion_logo_mobile',
@@ -532,7 +534,7 @@ $options[]      = array(
       'id'       => 'notion_outline_width',
       'type'     => 'slider',
       'title'    => esc_html__( 'Outline Width', 'notion' ),
-      'desc'     => esc_html__( 'Add/Select desired outline width (Max: 80px)', 'notion' ),
+      'desc'     => esc_html__( 'Add/Select desired outline width in pixel(Max: 80px)', 'notion' ),
       'options'  => array(
         "min"       => 5,
         "step"      => 5,
@@ -721,8 +723,20 @@ $options[]   = array(
       'title'    => esc_html__( 'Navigation Background Image', 'notion' ),
       'desc' => esc_html__( 'Upload or Select the image. ', 'notion' ),
     ),
-
-
+    array(
+      'id' => 'notion_header_animation',
+      'type'     => 'select',
+      'title'    => esc_html__( 'Header Animation', 'notion' ),
+      'desc' => esc_html__( 'Select a header animation style', 'notion' ),
+      'options'   => array(
+        '' => esc_html__( 'None', 'notion' ),
+        'sticky_header'   => esc_html__( 'Always Sticky On Top', 'notion' ),
+        'slide_down_header'   => esc_html__( 'Sticky On Scroll Down', 'notion' ),
+        'slide_up_down_header'   => esc_html__( 'Hide On Scroll Down / Show On Scroll Up', 'notion' ),
+      ),
+      'default' => 'slide_up_down_header',
+      // 'dependency' => array( 'notion_header_style', 'any', 'header_standard' ),
+    ),
   ),
 );
 
