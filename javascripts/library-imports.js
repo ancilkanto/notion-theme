@@ -252,3 +252,1002 @@ if ( typeof define === 'function' && define.amd ) {
 	window.SVGLoader = SVGLoader;
 
 })( window );
+
+
+
+
+
+
+
+
+
+
+/*
+ * jQuery Easing v1.3 - http://gsgd.co.uk/sandbox/jquery/easing/
+ *
+*/
+
+// t: current time, b: begInnIng value, c: change In value, d: duration
+jQuery.easing['jswing'] = jQuery.easing['swing'];
+
+jQuery.extend( jQuery.easing,
+{
+	def: 'easeOutQuad',
+	swing: function (x, t, b, c, d) {
+		//alert(jQuery.easing.default);
+		return jQuery.easing[jQuery.easing.def](x, t, b, c, d);
+	},
+	easeInQuad: function (x, t, b, c, d) {
+		return c*(t/=d)*t + b;
+	},
+	easeOutQuad: function (x, t, b, c, d) {
+		return -c *(t/=d)*(t-2) + b;
+	},
+	easeInOutQuad: function (x, t, b, c, d) {
+		if ((t/=d/2) < 1) return c/2*t*t + b;
+		return -c/2 * ((--t)*(t-2) - 1) + b;
+	},
+	easeInCubic: function (x, t, b, c, d) {
+		return c*(t/=d)*t*t + b;
+	},
+	easeOutCubic: function (x, t, b, c, d) {
+		return c*((t=t/d-1)*t*t + 1) + b;
+	},
+	easeInOutCubic: function (x, t, b, c, d) {
+		if ((t/=d/2) < 1) return c/2*t*t*t + b;
+		return c/2*((t-=2)*t*t + 2) + b;
+	},
+	easeInQuart: function (x, t, b, c, d) {
+		return c*(t/=d)*t*t*t + b;
+	},
+	easeOutQuart: function (x, t, b, c, d) {
+		return -c * ((t=t/d-1)*t*t*t - 1) + b;
+	},
+	easeInOutQuart: function (x, t, b, c, d) {
+		if ((t/=d/2) < 1) return c/2*t*t*t*t + b;
+		return -c/2 * ((t-=2)*t*t*t - 2) + b;
+	},
+	easeInQuint: function (x, t, b, c, d) {
+		return c*(t/=d)*t*t*t*t + b;
+	},
+	easeOutQuint: function (x, t, b, c, d) {
+		return c*((t=t/d-1)*t*t*t*t + 1) + b;
+	},
+	easeInOutQuint: function (x, t, b, c, d) {
+		if ((t/=d/2) < 1) return c/2*t*t*t*t*t + b;
+		return c/2*((t-=2)*t*t*t*t + 2) + b;
+	},
+	easeInSine: function (x, t, b, c, d) {
+		return -c * Math.cos(t/d * (Math.PI/2)) + c + b;
+	},
+	easeOutSine: function (x, t, b, c, d) {
+		return c * Math.sin(t/d * (Math.PI/2)) + b;
+	},
+	easeInOutSine: function (x, t, b, c, d) {
+		return -c/2 * (Math.cos(Math.PI*t/d) - 1) + b;
+	},
+	easeInExpo: function (x, t, b, c, d) {
+		return (t==0) ? b : c * Math.pow(2, 10 * (t/d - 1)) + b;
+	},
+	easeOutExpo: function (x, t, b, c, d) {
+		return (t==d) ? b+c : c * (-Math.pow(2, -10 * t/d) + 1) + b;
+	},
+	easeInOutExpo: function (x, t, b, c, d) {
+		if (t==0) return b;
+		if (t==d) return b+c;
+		if ((t/=d/2) < 1) return c/2 * Math.pow(2, 10 * (t - 1)) + b;
+		return c/2 * (-Math.pow(2, -10 * --t) + 2) + b;
+	},
+	easeInCirc: function (x, t, b, c, d) {
+		return -c * (Math.sqrt(1 - (t/=d)*t) - 1) + b;
+	},
+	easeOutCirc: function (x, t, b, c, d) {
+		return c * Math.sqrt(1 - (t=t/d-1)*t) + b;
+	},
+	easeInOutCirc: function (x, t, b, c, d) {
+		if ((t/=d/2) < 1) return -c/2 * (Math.sqrt(1 - t*t) - 1) + b;
+		return c/2 * (Math.sqrt(1 - (t-=2)*t) + 1) + b;
+	},
+	easeInElastic: function (x, t, b, c, d) {
+		var s=1.70158;var p=0;var a=c;
+		if (t==0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*.3;
+		if (a < Math.abs(c)) { a=c; var s=p/4; }
+		else var s = p/(2*Math.PI) * Math.asin (c/a);
+		return -(a*Math.pow(2,10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
+	},
+	easeOutElastic: function (x, t, b, c, d) {
+		var s=1.70158;var p=0;var a=c;
+		if (t==0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*.3;
+		if (a < Math.abs(c)) { a=c; var s=p/4; }
+		else var s = p/(2*Math.PI) * Math.asin (c/a);
+		return a*Math.pow(2,-10*t) * Math.sin( (t*d-s)*(2*Math.PI)/p ) + c + b;
+	},
+	easeInOutElastic: function (x, t, b, c, d) {
+		var s=1.70158;var p=0;var a=c;
+		if (t==0) return b;  if ((t/=d/2)==2) return b+c;  if (!p) p=d*(.3*1.5);
+		if (a < Math.abs(c)) { a=c; var s=p/4; }
+		else var s = p/(2*Math.PI) * Math.asin (c/a);
+		if (t < 1) return -.5*(a*Math.pow(2,10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
+		return a*Math.pow(2,-10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )*.5 + c + b;
+	},
+	easeInBack: function (x, t, b, c, d, s) {
+		if (s == undefined) s = 1.70158;
+		return c*(t/=d)*t*((s+1)*t - s) + b;
+	},
+	easeOutBack: function (x, t, b, c, d, s) {
+		if (s == undefined) s = 1.70158;
+		return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
+	},
+	easeInOutBack: function (x, t, b, c, d, s) {
+		if (s == undefined) s = 1.70158; 
+		if ((t/=d/2) < 1) return c/2*(t*t*(((s*=(1.525))+1)*t - s)) + b;
+		return c/2*((t-=2)*t*(((s*=(1.525))+1)*t + s) + 2) + b;
+	},
+	easeInBounce: function (x, t, b, c, d) {
+		return c - jQuery.easing.easeOutBounce (x, d-t, 0, c, d) + b;
+	},
+	easeOutBounce: function (x, t, b, c, d) {
+		if ((t/=d) < (1/2.75)) {
+			return c*(7.5625*t*t) + b;
+		} else if (t < (2/2.75)) {
+			return c*(7.5625*(t-=(1.5/2.75))*t + .75) + b;
+		} else if (t < (2.5/2.75)) {
+			return c*(7.5625*(t-=(2.25/2.75))*t + .9375) + b;
+		} else {
+			return c*(7.5625*(t-=(2.625/2.75))*t + .984375) + b;
+		}
+	},
+	easeInOutBounce: function (x, t, b, c, d) {
+		if (t < d/2) return jQuery.easing.easeInBounce (x, t*2, 0, c, d) * .5 + b;
+		return jQuery.easing.easeOutBounce (x, t*2-d, 0, c, d) * .5 + c*.5 + b;
+	}
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*! lightgallery - v1.6.8 - 2018-03-10
+* http://sachinchoolur.github.io/lightGallery/
+* Copyright (c) 2018 Sachin N; Licensed GPLv3 */
+!function(a,b){"function"==typeof define&&define.amd?define(["jquery"],function(a){return b(a)}):"object"==typeof module&&module.exports?module.exports=b(require("jquery")):b(a.jQuery)}(this,function(a){!function(){"use strict";function b(b,d){if(this.el=b,this.$el=a(b),this.s=a.extend({},c,d),this.s.dynamic&&"undefined"!==this.s.dynamicEl&&this.s.dynamicEl.constructor===Array&&!this.s.dynamicEl.length)throw"When using dynamic mode, you must also define dynamicEl as an Array.";return this.modules={},this.lGalleryOn=!1,this.lgBusy=!1,this.hideBartimeout=!1,this.isTouch="ontouchstart"in document.documentElement,this.s.slideEndAnimatoin&&(this.s.hideControlOnEnd=!1),this.s.dynamic?this.$items=this.s.dynamicEl:"this"===this.s.selector?this.$items=this.$el:""!==this.s.selector?this.s.selectWithin?this.$items=a(this.s.selectWithin).find(this.s.selector):this.$items=this.$el.find(a(this.s.selector)):this.$items=this.$el.children(),this.$slide="",this.$outer="",this.init(),this}var c={mode:"lg-slide",cssEasing:"ease",easing:"linear",speed:600,height:"100%",width:"100%",addClass:"",startClass:"lg-start-zoom",backdropDuration:150,hideBarsDelay:6e3,useLeft:!1,closable:!0,loop:!0,escKey:!0,keyPress:!0,controls:!0,slideEndAnimatoin:!0,hideControlOnEnd:!1,mousewheel:!0,getCaptionFromTitleOrAlt:!0,appendSubHtmlTo:".lg-sub-html",subHtmlSelectorRelative:!1,preload:1,showAfterLoad:!0,selector:"",selectWithin:"",nextHtml:"",prevHtml:"",index:!1,iframeMaxWidth:"100%",download:!0,counter:!0,appendCounterTo:".lg-toolbar",swipeThreshold:50,enableSwipe:!0,enableDrag:!0,dynamic:!1,dynamicEl:[],galleryId:1};b.prototype.init=function(){var b=this;b.s.preload>b.$items.length&&(b.s.preload=b.$items.length);var c=window.location.hash;c.indexOf("lg="+this.s.galleryId)>0&&(b.index=parseInt(c.split("&slide=")[1],10),a("body").addClass("lg-from-hash"),a("body").hasClass("lg-on")||(setTimeout(function(){b.build(b.index)}),a("body").addClass("lg-on"))),b.s.dynamic?(b.$el.trigger("onBeforeOpen.lg"),b.index=b.s.index||0,a("body").hasClass("lg-on")||setTimeout(function(){b.build(b.index),a("body").addClass("lg-on")})):b.$items.on("click.lgcustom",function(c){try{c.preventDefault(),c.preventDefault()}catch(a){c.returnValue=!1}b.$el.trigger("onBeforeOpen.lg"),b.index=b.s.index||b.$items.index(this),a("body").hasClass("lg-on")||(b.build(b.index),a("body").addClass("lg-on"))})},b.prototype.build=function(b){var c=this;c.structure(),a.each(a.fn.lightGallery.modules,function(b){c.modules[b]=new a.fn.lightGallery.modules[b](c.el)}),c.slide(b,!1,!1,!1),c.s.keyPress&&c.keyPress(),c.$items.length>1?(c.arrow(),setTimeout(function(){c.enableDrag(),c.enableSwipe()},50),c.s.mousewheel&&c.mousewheel()):c.$slide.on("click.lg",function(){c.$el.trigger("onSlideClick.lg")}),c.counter(),c.closeGallery(),c.$el.trigger("onAfterOpen.lg"),c.$outer.on("mousemove.lg click.lg touchstart.lg",function(){c.$outer.removeClass("lg-hide-items"),clearTimeout(c.hideBartimeout),c.hideBartimeout=setTimeout(function(){c.$outer.addClass("lg-hide-items")},c.s.hideBarsDelay)}),c.$outer.trigger("mousemove.lg")},b.prototype.structure=function(){var b,c="",d="",e=0,f="",g=this;for(a("body").append('<div class="lg-backdrop"></div>'),a(".lg-backdrop").css("transition-duration",this.s.backdropDuration+"ms"),e=0;e<this.$items.length;e++)c+='<div class="lg-item"></div>';if(this.s.controls&&this.$items.length>1&&(d='<div class="lg-actions"><button class="lg-prev lg-icon">'+this.s.prevHtml+'</button><button class="lg-next lg-icon">'+this.s.nextHtml+"</button></div>"),".lg-sub-html"===this.s.appendSubHtmlTo&&(f='<div class="lg-sub-html"></div>'),b='<div class="lg-outer '+this.s.addClass+" "+this.s.startClass+'"><div class="lg" style="width:'+this.s.width+"; height:"+this.s.height+'"><div class="lg-inner">'+c+'</div><div class="lg-toolbar lg-group"><span class="lg-close lg-icon"></span></div>'+d+f+"</div></div>",a("body").append(b),this.$outer=a(".lg-outer"),this.$slide=this.$outer.find(".lg-item"),this.s.useLeft?(this.$outer.addClass("lg-use-left"),this.s.mode="lg-slide"):this.$outer.addClass("lg-use-css3"),g.setTop(),a(window).on("resize.lg orientationchange.lg",function(){setTimeout(function(){g.setTop()},100)}),this.$slide.eq(this.index).addClass("lg-current"),this.doCss()?this.$outer.addClass("lg-css3"):(this.$outer.addClass("lg-css"),this.s.speed=0),this.$outer.addClass(this.s.mode),this.s.enableDrag&&this.$items.length>1&&this.$outer.addClass("lg-grab"),this.s.showAfterLoad&&this.$outer.addClass("lg-show-after-load"),this.doCss()){var h=this.$outer.find(".lg-inner");h.css("transition-timing-function",this.s.cssEasing),h.css("transition-duration",this.s.speed+"ms")}setTimeout(function(){a(".lg-backdrop").addClass("in")}),setTimeout(function(){g.$outer.addClass("lg-visible")},this.s.backdropDuration),this.s.download&&this.$outer.find(".lg-toolbar").append('<a id="lg-download" target="_blank" download class="lg-download lg-icon"></a>'),this.prevScrollTop=a(window).scrollTop()},b.prototype.setTop=function(){if("100%"!==this.s.height){var b=a(window).height(),c=(b-parseInt(this.s.height,10))/2,d=this.$outer.find(".lg");b>=parseInt(this.s.height,10)?d.css("top",c+"px"):d.css("top","0px")}},b.prototype.doCss=function(){return!!function(){var a=["transition","MozTransition","WebkitTransition","OTransition","msTransition","KhtmlTransition"],b=document.documentElement,c=0;for(c=0;c<a.length;c++)if(a[c]in b.style)return!0}()},b.prototype.isVideo=function(a,b){var c;if(c=this.s.dynamic?this.s.dynamicEl[b].html:this.$items.eq(b).attr("data-html"),!a)return c?{html5:!0}:(console.error("lightGallery :- data-src is not pvovided on slide item "+(b+1)+". Please make sure the selector property is properly configured. More info - http://sachinchoolur.github.io/lightGallery/demos/html-markup.html"),!1);var d=a.match(/\/\/(?:www\.)?youtu(?:\.be|be\.com)\/(?:watch\?v=|embed\/)?([a-z0-9\-\_\%]+)/i),e=a.match(/\/\/(?:www\.)?vimeo.com\/([0-9a-z\-_]+)/i),f=a.match(/\/\/(?:www\.)?dai.ly\/([0-9a-z\-_]+)/i),g=a.match(/\/\/(?:www\.)?(?:vk\.com|vkontakte\.ru)\/(?:video_ext\.php\?)(.*)/i);return d?{youtube:d}:e?{vimeo:e}:f?{dailymotion:f}:g?{vk:g}:void 0},b.prototype.counter=function(){this.s.counter&&a(this.s.appendCounterTo).append('<div id="lg-counter"><span id="lg-counter-current">'+(parseInt(this.index,10)+1)+'</span> / <span id="lg-counter-all">'+this.$items.length+"</span></div>")},b.prototype.addHtml=function(b){var c,d,e=null;if(this.s.dynamic?this.s.dynamicEl[b].subHtmlUrl?c=this.s.dynamicEl[b].subHtmlUrl:e=this.s.dynamicEl[b].subHtml:(d=this.$items.eq(b),d.attr("data-sub-html-url")?c=d.attr("data-sub-html-url"):(e=d.attr("data-sub-html"),this.s.getCaptionFromTitleOrAlt&&!e&&(e=d.attr("title")||d.find("img").first().attr("alt")))),!c)if(void 0!==e&&null!==e){var f=e.substring(0,1);"."!==f&&"#"!==f||(e=this.s.subHtmlSelectorRelative&&!this.s.dynamic?d.find(e).html():a(e).html())}else e="";".lg-sub-html"===this.s.appendSubHtmlTo?c?this.$outer.find(this.s.appendSubHtmlTo).load(c):this.$outer.find(this.s.appendSubHtmlTo).html(e):c?this.$slide.eq(b).load(c):this.$slide.eq(b).append(e),void 0!==e&&null!==e&&(""===e?this.$outer.find(this.s.appendSubHtmlTo).addClass("lg-empty-html"):this.$outer.find(this.s.appendSubHtmlTo).removeClass("lg-empty-html")),this.$el.trigger("onAfterAppendSubHtml.lg",[b])},b.prototype.preload=function(a){var b=1,c=1;for(b=1;b<=this.s.preload&&!(b>=this.$items.length-a);b++)this.loadContent(a+b,!1,0);for(c=1;c<=this.s.preload&&!(a-c<0);c++)this.loadContent(a-c,!1,0)},b.prototype.loadContent=function(b,c,d){var e,f,g,h,i,j,k=this,l=!1,m=function(b){for(var c=[],d=[],e=0;e<b.length;e++){var g=b[e].split(" ");""===g[0]&&g.splice(0,1),d.push(g[0]),c.push(g[1])}for(var h=a(window).width(),i=0;i<c.length;i++)if(parseInt(c[i],10)>h){f=d[i];break}};if(k.s.dynamic){if(k.s.dynamicEl[b].poster&&(l=!0,g=k.s.dynamicEl[b].poster),j=k.s.dynamicEl[b].html,f=k.s.dynamicEl[b].src,k.s.dynamicEl[b].responsive){m(k.s.dynamicEl[b].responsive.split(","))}h=k.s.dynamicEl[b].srcset,i=k.s.dynamicEl[b].sizes}else{if(k.$items.eq(b).attr("data-poster")&&(l=!0,g=k.$items.eq(b).attr("data-poster")),j=k.$items.eq(b).attr("data-html"),f=k.$items.eq(b).attr("href")||k.$items.eq(b).attr("data-src"),k.$items.eq(b).attr("data-responsive")){m(k.$items.eq(b).attr("data-responsive").split(","))}h=k.$items.eq(b).attr("data-srcset"),i=k.$items.eq(b).attr("data-sizes")}var n=!1;k.s.dynamic?k.s.dynamicEl[b].iframe&&(n=!0):"true"===k.$items.eq(b).attr("data-iframe")&&(n=!0);var o=k.isVideo(f,b);if(!k.$slide.eq(b).hasClass("lg-loaded")){if(n)k.$slide.eq(b).prepend('<div class="lg-video-cont lg-has-iframe" style="max-width:'+k.s.iframeMaxWidth+'"><div class="lg-video"><iframe class="lg-object" frameborder="0" src="'+f+'"  allowfullscreen="true"></iframe></div></div>');else if(l){var p="";p=o&&o.youtube?"lg-has-youtube":o&&o.vimeo?"lg-has-vimeo":"lg-has-html5",k.$slide.eq(b).prepend('<div class="lg-video-cont '+p+' "><div class="lg-video"><span class="lg-video-play"></span><img class="lg-object lg-has-poster" src="'+g+'" /></div></div>')}else o?(k.$slide.eq(b).prepend('<div class="lg-video-cont "><div class="lg-video"></div></div>'),k.$el.trigger("hasVideo.lg",[b,f,j])):k.$slide.eq(b).prepend('<div class="lg-img-wrap"><img class="lg-object lg-image" src="'+f+'" /></div>');if(k.$el.trigger("onAferAppendSlide.lg",[b]),e=k.$slide.eq(b).find(".lg-object"),i&&e.attr("sizes",i),h){e.attr("srcset",h);try{picturefill({elements:[e[0]]})}catch(a){console.warn("lightGallery :- If you want srcset to be supported for older browser please include picturefil version 2 javascript library in your document.")}}".lg-sub-html"!==this.s.appendSubHtmlTo&&k.addHtml(b),k.$slide.eq(b).addClass("lg-loaded")}k.$slide.eq(b).find(".lg-object").on("load.lg error.lg",function(){var c=0;d&&!a("body").hasClass("lg-from-hash")&&(c=d),setTimeout(function(){k.$slide.eq(b).addClass("lg-complete"),k.$el.trigger("onSlideItemLoad.lg",[b,d||0])},c)}),o&&o.html5&&!l&&k.$slide.eq(b).addClass("lg-complete"),!0===c&&(k.$slide.eq(b).hasClass("lg-complete")?k.preload(b):k.$slide.eq(b).find(".lg-object").on("load.lg error.lg",function(){k.preload(b)}))},b.prototype.slide=function(b,c,d,e){var f=this.$outer.find(".lg-current").index(),g=this;if(!g.lGalleryOn||f!==b){var h=this.$slide.length,i=g.lGalleryOn?this.s.speed:0;if(!g.lgBusy){if(this.s.download){var j;j=g.s.dynamic?!1!==g.s.dynamicEl[b].downloadUrl&&(g.s.dynamicEl[b].downloadUrl||g.s.dynamicEl[b].src):"false"!==g.$items.eq(b).attr("data-download-url")&&(g.$items.eq(b).attr("data-download-url")||g.$items.eq(b).attr("href")||g.$items.eq(b).attr("data-src")),j?(a("#lg-download").attr("href",j),g.$outer.removeClass("lg-hide-download")):g.$outer.addClass("lg-hide-download")}if(this.$el.trigger("onBeforeSlide.lg",[f,b,c,d]),g.lgBusy=!0,clearTimeout(g.hideBartimeout),".lg-sub-html"===this.s.appendSubHtmlTo&&setTimeout(function(){g.addHtml(b)},i),this.arrowDisable(b),e||(b<f?e="prev":b>f&&(e="next")),c){this.$slide.removeClass("lg-prev-slide lg-current lg-next-slide");var k,l;h>2?(k=b-1,l=b+1,0===b&&f===h-1?(l=0,k=h-1):b===h-1&&0===f&&(l=0,k=h-1)):(k=0,l=1),"prev"===e?g.$slide.eq(l).addClass("lg-next-slide"):g.$slide.eq(k).addClass("lg-prev-slide"),g.$slide.eq(b).addClass("lg-current")}else g.$outer.addClass("lg-no-trans"),this.$slide.removeClass("lg-prev-slide lg-next-slide"),"prev"===e?(this.$slide.eq(b).addClass("lg-prev-slide"),this.$slide.eq(f).addClass("lg-next-slide")):(this.$slide.eq(b).addClass("lg-next-slide"),this.$slide.eq(f).addClass("lg-prev-slide")),setTimeout(function(){g.$slide.removeClass("lg-current"),g.$slide.eq(b).addClass("lg-current"),g.$outer.removeClass("lg-no-trans")},50);g.lGalleryOn?(setTimeout(function(){g.loadContent(b,!0,0)},this.s.speed+50),setTimeout(function(){g.lgBusy=!1,g.$el.trigger("onAfterSlide.lg",[f,b,c,d])},this.s.speed)):(g.loadContent(b,!0,g.s.backdropDuration),g.lgBusy=!1,g.$el.trigger("onAfterSlide.lg",[f,b,c,d])),g.lGalleryOn=!0,this.s.counter&&a("#lg-counter-current").text(b+1)}g.index=b}},b.prototype.goToNextSlide=function(a){var b=this,c=b.s.loop;a&&b.$slide.length<3&&(c=!1),b.lgBusy||(b.index+1<b.$slide.length?(b.index++,b.$el.trigger("onBeforeNextSlide.lg",[b.index]),b.slide(b.index,a,!1,"next")):c?(b.index=0,b.$el.trigger("onBeforeNextSlide.lg",[b.index]),b.slide(b.index,a,!1,"next")):b.s.slideEndAnimatoin&&!a&&(b.$outer.addClass("lg-right-end"),setTimeout(function(){b.$outer.removeClass("lg-right-end")},400)))},b.prototype.goToPrevSlide=function(a){var b=this,c=b.s.loop;a&&b.$slide.length<3&&(c=!1),b.lgBusy||(b.index>0?(b.index--,b.$el.trigger("onBeforePrevSlide.lg",[b.index,a]),b.slide(b.index,a,!1,"prev")):c?(b.index=b.$items.length-1,b.$el.trigger("onBeforePrevSlide.lg",[b.index,a]),b.slide(b.index,a,!1,"prev")):b.s.slideEndAnimatoin&&!a&&(b.$outer.addClass("lg-left-end"),setTimeout(function(){b.$outer.removeClass("lg-left-end")},400)))},b.prototype.keyPress=function(){var b=this;this.$items.length>1&&a(window).on("keyup.lg",function(a){b.$items.length>1&&(37===a.keyCode&&(a.preventDefault(),b.goToPrevSlide()),39===a.keyCode&&(a.preventDefault(),b.goToNextSlide()))}),a(window).on("keydown.lg",function(a){!0===b.s.escKey&&27===a.keyCode&&(a.preventDefault(),b.$outer.hasClass("lg-thumb-open")?b.$outer.removeClass("lg-thumb-open"):b.destroy())})},b.prototype.arrow=function(){var a=this;this.$outer.find(".lg-prev").on("click.lg",function(){a.goToPrevSlide()}),this.$outer.find(".lg-next").on("click.lg",function(){a.goToNextSlide()})},b.prototype.arrowDisable=function(a){!this.s.loop&&this.s.hideControlOnEnd&&(a+1<this.$slide.length?this.$outer.find(".lg-next").removeAttr("disabled").removeClass("disabled"):this.$outer.find(".lg-next").attr("disabled","disabled").addClass("disabled"),a>0?this.$outer.find(".lg-prev").removeAttr("disabled").removeClass("disabled"):this.$outer.find(".lg-prev").attr("disabled","disabled").addClass("disabled"))},b.prototype.setTranslate=function(a,b,c){this.s.useLeft?a.css("left",b):a.css({transform:"translate3d("+b+"px, "+c+"px, 0px)"})},b.prototype.touchMove=function(b,c){var d=c-b;Math.abs(d)>15&&(this.$outer.addClass("lg-dragging"),this.setTranslate(this.$slide.eq(this.index),d,0),this.setTranslate(a(".lg-prev-slide"),-this.$slide.eq(this.index).width()+d,0),this.setTranslate(a(".lg-next-slide"),this.$slide.eq(this.index).width()+d,0))},b.prototype.touchEnd=function(a){var b=this;"lg-slide"!==b.s.mode&&b.$outer.addClass("lg-slide"),this.$slide.not(".lg-current, .lg-prev-slide, .lg-next-slide").css("opacity","0"),setTimeout(function(){b.$outer.removeClass("lg-dragging"),a<0&&Math.abs(a)>b.s.swipeThreshold?b.goToNextSlide(!0):a>0&&Math.abs(a)>b.s.swipeThreshold?b.goToPrevSlide(!0):Math.abs(a)<5&&b.$el.trigger("onSlideClick.lg"),b.$slide.removeAttr("style")}),setTimeout(function(){b.$outer.hasClass("lg-dragging")||"lg-slide"===b.s.mode||b.$outer.removeClass("lg-slide")},b.s.speed+100)},b.prototype.enableSwipe=function(){var a=this,b=0,c=0,d=!1;a.s.enableSwipe&&a.doCss()&&(a.$slide.on("touchstart.lg",function(c){a.$outer.hasClass("lg-zoomed")||a.lgBusy||(c.preventDefault(),a.manageSwipeClass(),b=c.originalEvent.targetTouches[0].pageX)}),a.$slide.on("touchmove.lg",function(e){a.$outer.hasClass("lg-zoomed")||(e.preventDefault(),c=e.originalEvent.targetTouches[0].pageX,a.touchMove(b,c),d=!0)}),a.$slide.on("touchend.lg",function(){a.$outer.hasClass("lg-zoomed")||(d?(d=!1,a.touchEnd(c-b)):a.$el.trigger("onSlideClick.lg"))}))},b.prototype.enableDrag=function(){var b=this,c=0,d=0,e=!1,f=!1;b.s.enableDrag&&b.doCss()&&(b.$outer.on("mousedown.lg",function(d){b.$outer.hasClass("lg-zoomed")||b.lgBusy||a(d.target).text()||(d.preventDefault(),b.manageSwipeClass(),c=d.pageX,e=!0,b.$outer.scrollLeft+=1,b.$outer.scrollLeft-=1,b.$outer.removeClass("lg-grab").addClass("lg-grabbing"),b.$el.trigger("onDragstart.lg"))}),a(window).on("mousemove.lg",function(a){e&&(f=!0,d=a.pageX,b.touchMove(c,d),b.$el.trigger("onDragmove.lg"))}),a(window).on("mouseup.lg",function(g){f?(f=!1,b.touchEnd(d-c),b.$el.trigger("onDragend.lg")):(a(g.target).hasClass("lg-object")||a(g.target).hasClass("lg-video-play"))&&b.$el.trigger("onSlideClick.lg"),e&&(e=!1,b.$outer.removeClass("lg-grabbing").addClass("lg-grab"))}))},b.prototype.manageSwipeClass=function(){var a=this.index+1,b=this.index-1;this.s.loop&&this.$slide.length>2&&(0===this.index?b=this.$slide.length-1:this.index===this.$slide.length-1&&(a=0)),this.$slide.removeClass("lg-next-slide lg-prev-slide"),b>-1&&this.$slide.eq(b).addClass("lg-prev-slide"),this.$slide.eq(a).addClass("lg-next-slide")},b.prototype.mousewheel=function(){var a=this;a.$outer.on("mousewheel.lg",function(b){b.deltaY&&(b.deltaY>0?a.goToPrevSlide():a.goToNextSlide(),b.preventDefault())})},b.prototype.closeGallery=function(){var b=this,c=!1;this.$outer.find(".lg-close").on("click.lg",function(){b.destroy()}),b.s.closable&&(b.$outer.on("mousedown.lg",function(b){c=!!(a(b.target).is(".lg-outer")||a(b.target).is(".lg-item ")||a(b.target).is(".lg-img-wrap"))}),b.$outer.on("mousemove.lg",function(){c=!1}),b.$outer.on("mouseup.lg",function(d){(a(d.target).is(".lg-outer")||a(d.target).is(".lg-item ")||a(d.target).is(".lg-img-wrap")&&c)&&(b.$outer.hasClass("lg-dragging")||b.destroy())}))},b.prototype.destroy=function(b){var c=this;b||(c.$el.trigger("onBeforeClose.lg"),a(window).scrollTop(c.prevScrollTop)),b&&(c.s.dynamic||this.$items.off("click.lg click.lgcustom"),a.removeData(c.el,"lightGallery")),this.$el.off(".lg.tm"),a.each(a.fn.lightGallery.modules,function(a){c.modules[a]&&c.modules[a].destroy()}),this.lGalleryOn=!1,clearTimeout(c.hideBartimeout),this.hideBartimeout=!1,a(window).off(".lg"),a("body").removeClass("lg-on lg-from-hash"),c.$outer&&c.$outer.removeClass("lg-visible"),a(".lg-backdrop").removeClass("in"),setTimeout(function(){c.$outer&&c.$outer.remove(),a(".lg-backdrop").remove(),b||c.$el.trigger("onCloseAfter.lg")},c.s.backdropDuration+50)},a.fn.lightGallery=function(c){return this.each(function(){if(a.data(this,"lightGallery"))try{a(this).data("lightGallery").init()}catch(a){console.error("lightGallery has not initiated properly")}else a.data(this,"lightGallery",new b(this,c))})},a.fn.lightGallery.modules={}}()});
+
+
+
+
+
+
+
+/*! lg-video - v1.2.0 - 2017-11-16
+* http://sachinchoolur.github.io/lightGallery
+* Copyright (c) 2017 Sachin N; Licensed GPLv3 */
+
+(function (root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as an anonymous module unless amdModuleId is set
+    define(['jquery'], function (a0) {
+      return (factory(a0));
+    });
+  } else if (typeof exports === 'object') {
+    // Node. Does not work with strict CommonJS, but
+    // only CommonJS-like environments that support module.exports,
+    // like Node.
+    module.exports = factory(require('jquery'));
+  } else {
+    factory(jQuery);
+  }
+}(this, function ($) {
+
+(function() {
+    
+        'use strict';
+    
+        var defaults = {
+            videoMaxWidth: '855px',
+
+            autoplayFirstVideo: true,
+
+            youtubePlayerParams: false,
+            vimeoPlayerParams: false,
+            dailymotionPlayerParams: false,
+            vkPlayerParams: false,
+
+            videojs: false,
+            videojsOptions: {}
+        };
+    
+        var Video = function(element) {
+    
+            this.core = $(element).data('lightGallery');
+    
+            this.$el = $(element);
+            this.core.s = $.extend({}, defaults, this.core.s);
+            this.videoLoaded = false;
+    
+            this.init();
+    
+            return this;
+        };
+    
+        Video.prototype.init = function() {
+            var _this = this;
+    
+            // Event triggered when video url found without poster
+            _this.core.$el.on('hasVideo.lg.tm', onHasVideo.bind(this));
+    
+            // Set max width for video
+            _this.core.$el.on('onAferAppendSlide.lg.tm', onAferAppendSlide.bind(this));
+    
+            if (_this.core.doCss() && (_this.core.$items.length > 1) && (_this.core.s.enableSwipe || _this.core.s.enableDrag)) {
+                _this.core.$el.on('onSlideClick.lg.tm', function() {
+                    var $el = _this.core.$slide.eq(_this.core.index);
+                    _this.loadVideoOnclick($el);
+                });
+            } else {
+    
+                // For IE 9 and bellow
+                _this.core.$slide.on('click.lg', function() {
+                    _this.loadVideoOnclick($(this));
+                });
+            }
+    
+            _this.core.$el.on('onBeforeSlide.lg.tm', onBeforeSlide.bind(this));
+    
+            _this.core.$el.on('onAfterSlide.lg.tm', function(event, prevIndex) {
+                _this.core.$slide.eq(prevIndex).removeClass('lg-video-playing');
+            });
+        };
+    
+        Video.prototype.loadVideo = function(src, addClass, noPoster, index, html) {
+            var video = '';
+            var autoplay = 1;
+            var a = '';
+            var isVideo = this.core.isVideo(src, index) || {};
+    
+            // Enable autoplay based on setting for first video if poster doesn't exist
+            if (noPoster) {
+                if (this.videoLoaded) {
+                    autoplay = 0;
+                } else {
+                    autoplay = this.core.s.autoplayFirstVideo ? 1 : 0;
+                }
+            }
+    
+            if (isVideo.youtube) {
+    
+                a = '?wmode=opaque&autoplay=' + autoplay + '&enablejsapi=1';
+                if (this.core.s.youtubePlayerParams) {
+                    a = a + '&' + $.param(this.core.s.youtubePlayerParams);
+                }
+    
+                video = '<iframe class="lg-video-object lg-youtube ' + addClass + '" width="560" height="315" src="//www.youtube.com/embed/' + isVideo.youtube[1] + a + '" frameborder="0" allowfullscreen></iframe>';
+    
+            } else if (isVideo.vimeo) {
+    
+                a = '?autoplay=' + autoplay + '&api=1';
+                if (this.core.s.vimeoPlayerParams) {
+                    a = a + '&' + $.param(this.core.s.vimeoPlayerParams);
+                }
+    
+                video = '<iframe class="lg-video-object lg-vimeo ' + addClass + '" width="560" height="315"  src="//player.vimeo.com/video/' + isVideo.vimeo[1] + a + '" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>';
+    
+            } else if (isVideo.dailymotion) {
+    
+                a = '?wmode=opaque&autoplay=' + autoplay + '&api=postMessage';
+                if (this.core.s.dailymotionPlayerParams) {
+                    a = a + '&' + $.param(this.core.s.dailymotionPlayerParams);
+                }
+    
+                video = '<iframe class="lg-video-object lg-dailymotion ' + addClass + '" width="560" height="315" src="//www.dailymotion.com/embed/video/' + isVideo.dailymotion[1] + a + '" frameborder="0" allowfullscreen></iframe>';
+    
+            } else if (isVideo.html5) {
+                var fL = html.substring(0, 1);
+                if (fL === '.' || fL === '#') {
+                    html = $(html).html();
+                }
+    
+                video = html;
+    
+            } else if (isVideo.vk) {
+    
+                a = '&autoplay=' + autoplay;
+                if (this.core.s.vkPlayerParams) {
+                    a = a + '&' + $.param(this.core.s.vkPlayerParams);
+                }
+    
+                video = '<iframe class="lg-video-object lg-vk ' + addClass + '" width="560" height="315" src="http://vk.com/video_ext.php?' + isVideo.vk[1] + a + '" frameborder="0" allowfullscreen></iframe>';
+    
+            }
+    
+            return video;
+        };
+
+        Video.prototype.loadVideoOnclick = function($el){
+
+            var _this = this;
+            // check slide has poster
+            if ($el.find('.lg-object').hasClass('lg-has-poster') && $el.find('.lg-object').is(':visible')) {
+
+                // check already video element present
+                if (!$el.hasClass('lg-has-video')) {
+
+                    $el.addClass('lg-video-playing lg-has-video');
+
+                    var _src;
+                    var _html;
+                    var _loadVideo = function(_src, _html) {
+
+                        $el.find('.lg-video').append(_this.loadVideo(_src, '', false, _this.core.index, _html));
+
+                        if (_html) {
+                            if (_this.core.s.videojs) {
+                                try {
+                                    videojs(_this.core.$slide.eq(_this.core.index).find('.lg-html5').get(0), _this.core.s.videojsOptions, function() {
+                                        this.play();
+                                    });
+                                } catch (e) {
+                                    console.error('Make sure you have included videojs');
+                                }
+                            } else {
+                                _this.core.$slide.eq(_this.core.index).find('.lg-html5').get(0).play();
+                            }
+                        }
+
+                    };
+
+                    if (_this.core.s.dynamic) {
+
+                        _src = _this.core.s.dynamicEl[_this.core.index].src;
+                        _html = _this.core.s.dynamicEl[_this.core.index].html;
+
+                        _loadVideo(_src, _html);
+
+                    } else {
+
+                        _src = _this.core.$items.eq(_this.core.index).attr('href') || _this.core.$items.eq(_this.core.index).attr('data-src');
+                        _html = _this.core.$items.eq(_this.core.index).attr('data-html');
+
+                        _loadVideo(_src, _html);
+
+                    }
+
+                    var $tempImg = $el.find('.lg-object');
+                    $el.find('.lg-video').append($tempImg);
+
+                    // @todo loading icon for html5 videos also
+                    // for showing the loading indicator while loading video
+                    if (!$el.find('.lg-video-object').hasClass('lg-html5')) {
+                        $el.removeClass('lg-complete');
+                        $el.find('.lg-video-object').on('load.lg error.lg', function() {
+                            $el.addClass('lg-complete');
+                        });
+                    }
+
+                } else {
+
+                    var youtubePlayer = $el.find('.lg-youtube').get(0);
+                    var vimeoPlayer = $el.find('.lg-vimeo').get(0);
+                    var dailymotionPlayer = $el.find('.lg-dailymotion').get(0);
+                    var html5Player = $el.find('.lg-html5').get(0);
+                    if (youtubePlayer) {
+                        youtubePlayer.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+                    } else if (vimeoPlayer) {
+                        try {
+                            $f(vimeoPlayer).api('play');
+                        } catch (e) {
+                            console.error('Make sure you have included froogaloop2 js');
+                        }
+                    } else if (dailymotionPlayer) {
+                        dailymotionPlayer.contentWindow.postMessage('play', '*');
+
+                    } else if (html5Player) {
+                        if (_this.core.s.videojs) {
+                            try {
+                                videojs(html5Player).play();
+                            } catch (e) {
+                                console.error('Make sure you have included videojs');
+                            }
+                        } else {
+                            html5Player.play();
+                        }
+                    }
+
+                    $el.addClass('lg-video-playing');
+
+                }
+            }
+        };
+    
+        Video.prototype.destroy = function() {
+            this.videoLoaded = false;
+        };
+
+        function onHasVideo(event, index, src, html) {
+            /*jshint validthis:true */
+            var _this = this;
+            _this.core.$slide.eq(index).find('.lg-video').append(_this.loadVideo(src, 'lg-object', true, index, html));
+            if (html) {
+                if (_this.core.s.videojs) {
+                    try {
+                        videojs(_this.core.$slide.eq(index).find('.lg-html5').get(0), _this.core.s.videojsOptions, function() {
+                            if (!_this.videoLoaded && _this.core.s.autoplayFirstVideo) {
+                                this.play();
+                            }
+                        });
+                    } catch (e) {
+                        console.error('Make sure you have included videojs');
+                    }
+                } else {
+                    if(!_this.videoLoaded && _this.core.s.autoplayFirstVideo) {
+                        _this.core.$slide.eq(index).find('.lg-html5').get(0).play();
+                    }
+                }
+            }
+        }
+
+        function onAferAppendSlide(event, index) {
+            /*jshint validthis:true */
+            var $videoCont = this.core.$slide.eq(index).find('.lg-video-cont');
+            if (!$videoCont.hasClass('lg-has-iframe')) {
+                $videoCont.css('max-width', this.core.s.videoMaxWidth);
+                this.videoLoaded = true;
+            }
+        }
+
+        function onBeforeSlide(event, prevIndex, index) {
+            /*jshint validthis:true */
+            var _this = this;
+
+            var $videoSlide = _this.core.$slide.eq(prevIndex);
+            var youtubePlayer = $videoSlide.find('.lg-youtube').get(0);
+            var vimeoPlayer = $videoSlide.find('.lg-vimeo').get(0);
+            var dailymotionPlayer = $videoSlide.find('.lg-dailymotion').get(0);
+            var vkPlayer = $videoSlide.find('.lg-vk').get(0);
+            var html5Player = $videoSlide.find('.lg-html5').get(0);
+            if (youtubePlayer) {
+                youtubePlayer.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+            } else if (vimeoPlayer) {
+                try {
+                    $f(vimeoPlayer).api('pause');
+                } catch (e) {
+                    console.error('Make sure you have included froogaloop2 js');
+                }
+            } else if (dailymotionPlayer) {
+                dailymotionPlayer.contentWindow.postMessage('pause', '*');
+
+            } else if (html5Player) {
+                if (_this.core.s.videojs) {
+                    try {
+                        videojs(html5Player).pause();
+                    } catch (e) {
+                        console.error('Make sure you have included videojs');
+                    }
+                } else {
+                    html5Player.pause();
+                }
+            } if (vkPlayer) {
+                $(vkPlayer).attr('src', $(vkPlayer).attr('src').replace('&autoplay', '&noplay'));
+            }
+
+            var _src;
+            if (_this.core.s.dynamic) {
+                _src = _this.core.s.dynamicEl[index].src;
+            } else {
+                _src = _this.core.$items.eq(index).attr('href') || _this.core.$items.eq(index).attr('data-src');
+
+            }
+
+            var _isVideo = _this.core.isVideo(_src, index) || {};
+            if (_isVideo.youtube || _isVideo.vimeo || _isVideo.dailymotion || _isVideo.vk) {
+                _this.core.$outer.addClass('lg-hide-download');
+            }
+
+        }
+    
+        $.fn.lightGallery.modules.video = Video;
+    
+    })();
+
+}));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*! lg-thumbnail - v1.1.0 - 2017-08-08
+* http://sachinchoolur.github.io/lightGallery
+* Copyright (c) 2017 Sachin N; Licensed GPLv3 */
+
+(function (root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as an anonymous module unless amdModuleId is set
+    define(['jquery'], function (a0) {
+      return (factory(a0));
+    });
+  } else if (typeof exports === 'object') {
+    // Node. Does not work with strict CommonJS, but
+    // only CommonJS-like environments that support module.exports,
+    // like Node.
+    module.exports = factory(require('jquery'));
+  } else {
+    factory(jQuery);
+  }
+}(this, function ($) {
+
+(function() {
+
+    'use strict';
+
+    var defaults = {
+        thumbnail: true,
+
+        animateThumb: true,
+        currentPagerPosition: 'middle',
+
+        thumbWidth: 100,
+        thumbHeight: '80px',
+        thumbContHeight: 100,
+        thumbMargin: 5,
+
+        exThumbImage: false,
+        showThumbByDefault: true,
+        toogleThumb: true,
+        pullCaptionUp: true,
+
+        enableThumbDrag: true,
+        enableThumbSwipe: true,
+        swipeThreshold: 50,
+
+        loadYoutubeThumbnail: true,
+        youtubeThumbSize: 1,
+
+        loadVimeoThumbnail: true,
+        vimeoThumbSize: 'thumbnail_small',
+
+        loadDailymotionThumbnail: true
+    };
+
+    var Thumbnail = function(element) {
+
+        // get lightGallery core plugin data
+        this.core = $(element).data('lightGallery');
+
+        // extend module default settings with lightGallery core settings
+        this.core.s = $.extend({}, defaults, this.core.s);
+
+        this.$el = $(element);
+        this.$thumbOuter = null;
+        this.thumbOuterWidth = 0;
+        this.thumbTotalWidth = (this.core.$items.length * (this.core.s.thumbWidth + this.core.s.thumbMargin));
+        this.thumbIndex = this.core.index;
+
+        if (this.core.s.animateThumb) {
+            this.core.s.thumbHeight = '100%';
+        }
+
+        // Thumbnail animation value
+        this.left = 0;
+
+        this.init();
+
+        return this;
+    };
+
+    Thumbnail.prototype.init = function() {
+        var _this = this;
+        if (this.core.s.thumbnail && this.core.$items.length > 1) {
+            if (this.core.s.showThumbByDefault) {
+                setTimeout(function(){
+                    _this.core.$outer.addClass('lg-thumb-open');
+                }, 700);
+            }
+
+            if (this.core.s.pullCaptionUp) {
+                this.core.$outer.addClass('lg-pull-caption-up');
+            }
+
+            this.build();
+            if (this.core.s.animateThumb && this.core.doCss()) {
+                if (this.core.s.enableThumbDrag) {
+                    this.enableThumbDrag();
+                }
+
+                if (this.core.s.enableThumbSwipe) {
+                    this.enableThumbSwipe();
+                }
+
+                this.thumbClickable = false;
+            } else {
+                this.thumbClickable = true;
+            }
+
+            this.toogle();
+            this.thumbkeyPress();
+        }
+    };
+
+    Thumbnail.prototype.build = function() {
+        var _this = this;
+        var thumbList = '';
+        var vimeoErrorThumbSize = '';
+        var $thumb;
+        var html = '<div class="lg-thumb-outer">' +
+            '<div class="lg-thumb lg-group">' +
+            '</div>' +
+            '</div>';
+
+        switch (this.core.s.vimeoThumbSize) {
+            case 'thumbnail_large':
+                vimeoErrorThumbSize = '640';
+                break;
+            case 'thumbnail_medium':
+                vimeoErrorThumbSize = '200x150';
+                break;
+            case 'thumbnail_small':
+                vimeoErrorThumbSize = '100x75';
+        }
+
+        _this.core.$outer.addClass('lg-has-thumb');
+
+        _this.core.$outer.find('.lg').append(html);
+
+        _this.$thumbOuter = _this.core.$outer.find('.lg-thumb-outer');
+        _this.thumbOuterWidth = _this.$thumbOuter.width();
+
+        if (_this.core.s.animateThumb) {
+            _this.core.$outer.find('.lg-thumb').css({
+                width: _this.thumbTotalWidth + 'px',
+                position: 'relative'
+            });
+        }
+
+        if (this.core.s.animateThumb) {
+            _this.$thumbOuter.css('height', _this.core.s.thumbContHeight + 'px');
+        }
+
+        function getThumb(src, thumb, index) {
+            var isVideo = _this.core.isVideo(src, index) || {};
+            var thumbImg;
+            var vimeoId = '';
+
+            if (isVideo.youtube || isVideo.vimeo || isVideo.dailymotion) {
+                if (isVideo.youtube) {
+                    if (_this.core.s.loadYoutubeThumbnail) {
+                        thumbImg = '//img.youtube.com/vi/' + isVideo.youtube[1] + '/' + _this.core.s.youtubeThumbSize + '.jpg';
+                    } else {
+                        thumbImg = thumb;
+                    }
+                } else if (isVideo.vimeo) {
+                    if (_this.core.s.loadVimeoThumbnail) {
+                        thumbImg = '//i.vimeocdn.com/video/error_' + vimeoErrorThumbSize + '.jpg';
+                        vimeoId = isVideo.vimeo[1];
+                    } else {
+                        thumbImg = thumb;
+                    }
+                } else if (isVideo.dailymotion) {
+                    if (_this.core.s.loadDailymotionThumbnail) {
+                        thumbImg = '//www.dailymotion.com/thumbnail/video/' + isVideo.dailymotion[1];
+                    } else {
+                        thumbImg = thumb;
+                    }
+                }
+            } else {
+                thumbImg = thumb;
+            }
+
+            thumbList += '<div data-vimeo-id="' + vimeoId + '" class="lg-thumb-item" style="width:' + _this.core.s.thumbWidth + 'px; height: ' + _this.core.s.thumbHeight + '; margin-right: ' + _this.core.s.thumbMargin + 'px"><img src="' + thumbImg + '" /></div>';
+            vimeoId = '';
+        }
+
+        if (_this.core.s.dynamic) {
+            for (var i = 0; i < _this.core.s.dynamicEl.length; i++) {
+                getThumb(_this.core.s.dynamicEl[i].src, _this.core.s.dynamicEl[i].thumb, i);
+            }
+        } else {
+            _this.core.$items.each(function(i) {
+
+                if (!_this.core.s.exThumbImage) {
+                    getThumb($(this).attr('href') || $(this).attr('data-src'), $(this).find('img').attr('src'), i);
+                } else {
+                    getThumb($(this).attr('href') || $(this).attr('data-src'), $(this).attr(_this.core.s.exThumbImage), i);
+                }
+
+            });
+        }
+
+        _this.core.$outer.find('.lg-thumb').html(thumbList);
+
+        $thumb = _this.core.$outer.find('.lg-thumb-item');
+
+        // Load vimeo thumbnails
+        $thumb.each(function() {
+            var $this = $(this);
+            var vimeoVideoId = $this.attr('data-vimeo-id');
+
+            if (vimeoVideoId) {
+                $.getJSON('//www.vimeo.com/api/v2/video/' + vimeoVideoId + '.json?callback=?', {
+                    format: 'json'
+                }, function(data) {
+                    $this.find('img').attr('src', data[0][_this.core.s.vimeoThumbSize]);
+                });
+            }
+        });
+
+        // manage active class for thumbnail
+        $thumb.eq(_this.core.index).addClass('active');
+        _this.core.$el.on('onBeforeSlide.lg.tm', function() {
+            $thumb.removeClass('active');
+            $thumb.eq(_this.core.index).addClass('active');
+        });
+
+        $thumb.on('click.lg touchend.lg', function() {
+            var _$this = $(this);
+            setTimeout(function() {
+
+                // In IE9 and bellow touch does not support
+                // Go to slide if browser does not support css transitions
+                if ((_this.thumbClickable && !_this.core.lgBusy) || !_this.core.doCss()) {
+                    _this.core.index = _$this.index();
+                    _this.core.slide(_this.core.index, false, true, false);
+                }
+            }, 50);
+        });
+
+        _this.core.$el.on('onBeforeSlide.lg.tm', function() {
+            _this.animateThumb(_this.core.index);
+        });
+
+        $(window).on('resize.lg.thumb orientationchange.lg.thumb', function() {
+            setTimeout(function() {
+                _this.animateThumb(_this.core.index);
+                _this.thumbOuterWidth = _this.$thumbOuter.width();
+            }, 200);
+        });
+
+    };
+
+    Thumbnail.prototype.setTranslate = function(value) {
+        // jQuery supports Automatic CSS prefixing since jQuery 1.8.0
+        this.core.$outer.find('.lg-thumb').css({
+            transform: 'translate3d(-' + (value) + 'px, 0px, 0px)'
+        });
+    };
+
+    Thumbnail.prototype.animateThumb = function(index) {
+        var $thumb = this.core.$outer.find('.lg-thumb');
+        if (this.core.s.animateThumb) {
+            var position;
+            switch (this.core.s.currentPagerPosition) {
+                case 'left':
+                    position = 0;
+                    break;
+                case 'middle':
+                    position = (this.thumbOuterWidth / 2) - (this.core.s.thumbWidth / 2);
+                    break;
+                case 'right':
+                    position = this.thumbOuterWidth - this.core.s.thumbWidth;
+            }
+            this.left = ((this.core.s.thumbWidth + this.core.s.thumbMargin) * index - 1) - position;
+            if (this.left > (this.thumbTotalWidth - this.thumbOuterWidth)) {
+                this.left = this.thumbTotalWidth - this.thumbOuterWidth;
+            }
+
+            if (this.left < 0) {
+                this.left = 0;
+            }
+
+            if (this.core.lGalleryOn) {
+                if (!$thumb.hasClass('on')) {
+                    this.core.$outer.find('.lg-thumb').css('transition-duration', this.core.s.speed + 'ms');
+                }
+
+                if (!this.core.doCss()) {
+                    $thumb.animate({
+                        left: -this.left + 'px'
+                    }, this.core.s.speed);
+                }
+            } else {
+                if (!this.core.doCss()) {
+                    $thumb.css('left', -this.left + 'px');
+                }
+            }
+
+            this.setTranslate(this.left);
+
+        }
+    };
+
+    // Enable thumbnail dragging and swiping
+    Thumbnail.prototype.enableThumbDrag = function() {
+
+        var _this = this;
+        var startCoords = 0;
+        var endCoords = 0;
+        var isDraging = false;
+        var isMoved = false;
+        var tempLeft = 0;
+
+        _this.$thumbOuter.addClass('lg-grab');
+
+        _this.core.$outer.find('.lg-thumb').on('mousedown.lg.thumb', function(e) {
+            if (_this.thumbTotalWidth > _this.thumbOuterWidth) {
+                // execute only on .lg-object
+                e.preventDefault();
+                startCoords = e.pageX;
+                isDraging = true;
+
+                // ** Fix for webkit cursor issue https://code.google.com/p/chromium/issues/detail?id=26723
+                _this.core.$outer.scrollLeft += 1;
+                _this.core.$outer.scrollLeft -= 1;
+
+                // *
+                _this.thumbClickable = false;
+                _this.$thumbOuter.removeClass('lg-grab').addClass('lg-grabbing');
+            }
+        });
+
+        $(window).on('mousemove.lg.thumb', function(e) {
+            if (isDraging) {
+                tempLeft = _this.left;
+                isMoved = true;
+                endCoords = e.pageX;
+
+                _this.$thumbOuter.addClass('lg-dragging');
+
+                tempLeft = tempLeft - (endCoords - startCoords);
+
+                if (tempLeft > (_this.thumbTotalWidth - _this.thumbOuterWidth)) {
+                    tempLeft = _this.thumbTotalWidth - _this.thumbOuterWidth;
+                }
+
+                if (tempLeft < 0) {
+                    tempLeft = 0;
+                }
+
+                // move current slide
+                _this.setTranslate(tempLeft);
+
+            }
+        });
+
+        $(window).on('mouseup.lg.thumb', function() {
+            if (isMoved) {
+                isMoved = false;
+                _this.$thumbOuter.removeClass('lg-dragging');
+
+                _this.left = tempLeft;
+
+                if (Math.abs(endCoords - startCoords) < _this.core.s.swipeThreshold) {
+                    _this.thumbClickable = true;
+                }
+
+            } else {
+                _this.thumbClickable = true;
+            }
+
+            if (isDraging) {
+                isDraging = false;
+                _this.$thumbOuter.removeClass('lg-grabbing').addClass('lg-grab');
+            }
+        });
+
+    };
+
+    Thumbnail.prototype.enableThumbSwipe = function() {
+        var _this = this;
+        var startCoords = 0;
+        var endCoords = 0;
+        var isMoved = false;
+        var tempLeft = 0;
+
+        _this.core.$outer.find('.lg-thumb').on('touchstart.lg', function(e) {
+            if (_this.thumbTotalWidth > _this.thumbOuterWidth) {
+                e.preventDefault();
+                startCoords = e.originalEvent.targetTouches[0].pageX;
+                _this.thumbClickable = false;
+            }
+        });
+
+        _this.core.$outer.find('.lg-thumb').on('touchmove.lg', function(e) {
+            if (_this.thumbTotalWidth > _this.thumbOuterWidth) {
+                e.preventDefault();
+                endCoords = e.originalEvent.targetTouches[0].pageX;
+                isMoved = true;
+
+                _this.$thumbOuter.addClass('lg-dragging');
+
+                tempLeft = _this.left;
+
+                tempLeft = tempLeft - (endCoords - startCoords);
+
+                if (tempLeft > (_this.thumbTotalWidth - _this.thumbOuterWidth)) {
+                    tempLeft = _this.thumbTotalWidth - _this.thumbOuterWidth;
+                }
+
+                if (tempLeft < 0) {
+                    tempLeft = 0;
+                }
+
+                // move current slide
+                _this.setTranslate(tempLeft);
+
+            }
+        });
+
+        _this.core.$outer.find('.lg-thumb').on('touchend.lg', function() {
+            if (_this.thumbTotalWidth > _this.thumbOuterWidth) {
+
+                if (isMoved) {
+                    isMoved = false;
+                    _this.$thumbOuter.removeClass('lg-dragging');
+                    if (Math.abs(endCoords - startCoords) < _this.core.s.swipeThreshold) {
+                        _this.thumbClickable = true;
+                    }
+
+                    _this.left = tempLeft;
+                } else {
+                    _this.thumbClickable = true;
+                }
+            } else {
+                _this.thumbClickable = true;
+            }
+        });
+
+    };
+
+    Thumbnail.prototype.toogle = function() {
+        var _this = this;
+        if (_this.core.s.toogleThumb) {
+            _this.core.$outer.addClass('lg-can-toggle');
+            _this.$thumbOuter.append('<span class="lg-toogle-thumb lg-icon"></span>');
+            _this.core.$outer.find('.lg-toogle-thumb').on('click.lg', function() {
+                _this.core.$outer.toggleClass('lg-thumb-open');
+            });
+        }
+    };
+
+    Thumbnail.prototype.thumbkeyPress = function() {
+        var _this = this;
+        $(window).on('keydown.lg.thumb', function(e) {
+            if (e.keyCode === 38) {
+                e.preventDefault();
+                _this.core.$outer.addClass('lg-thumb-open');
+            } else if (e.keyCode === 40) {
+                e.preventDefault();
+                _this.core.$outer.removeClass('lg-thumb-open');
+            }
+        });
+    };
+
+    Thumbnail.prototype.destroy = function() {
+        if (this.core.s.thumbnail && this.core.$items.length > 1) {
+            $(window).off('resize.lg.thumb orientationchange.lg.thumb keydown.lg.thumb');
+            this.$thumbOuter.remove();
+            this.core.$outer.removeClass('lg-has-thumb');
+        }
+    };
+
+    $.fn.lightGallery.modules.Thumbnail = Thumbnail;
+
+})();
+
+}));

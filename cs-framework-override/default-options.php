@@ -46,6 +46,8 @@
 
     function notion_get_default_option_value($opt_id){
         global $mach_default_options;
-        return $mach_default_options[$opt_id];
+
+        if(isset($mach_default_options[$opt_id]))
+            return $mach_default_options[$opt_id];
     }
 ?>

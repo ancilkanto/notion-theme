@@ -101,15 +101,15 @@
 
     if(notion_get_option('notion_site_layout') === 'site_outlined'){
         ?>
-        <div class="page-outline" data-width="<?php echo esc_html__(notion_get_option('notion_outline_width')) ?>" data-color="<?php echo esc_html__(notion_get_option('notion_outline_color')) ?>">
+        <div class="page-outline" data-width="<?php echo esc_attr(notion_get_option('notion_outline_width')) ?>" data-color="<?php echo esc_attr(notion_get_option('notion_outline_color')) ?>">
             <div class="page-outline-top"></div>
             <div class="page-outline-right"></div>
             <div class="page-outline-bottom"></div>
             <div class="page-outline-left"></div>
-            <div class="page-outline-top1 <?php echo esc_html__($inner_shadow); ?>"></div>
-            <div class="page-outline-right1 <?php echo esc_html__($inner_shadow); ?>"></div>
-            <div class="page-outline-bottom1 <?php echo esc_html__($inner_shadow); ?>"></div>
-            <div class="page-outline-left1 <?php echo esc_html__($inner_shadow); ?>"></div>
+            <div class="page-outline-top1 <?php echo esc_attr($inner_shadow); ?>"></div>
+            <div class="page-outline-right1 <?php echo esc_attr($inner_shadow); ?>"></div>
+            <div class="page-outline-bottom1 <?php echo esc_attr($inner_shadow); ?>"></div>
+            <div class="page-outline-left1 <?php echo esc_attr($inner_shadow); ?>"></div>
         </div>
         <?php
     }
@@ -123,19 +123,19 @@
     }
 
     if(notion_get_option('notion_logo_light') !== null && notion_get_option('notion_logo_light') !== ''){
-        $notion_logo_light = '<img class="svg-convert header-logo-light" src="'. esc_url(wp_get_attachment_url(notion_get_option('notion_logo_light'))) .'" style="height: '.$logo_height.';" alt=" '.esc_attr(get_bloginfo('name')).'">';
+        $notion_logo_light = '<img class="svg-convert header-logo-light" src="'. esc_url(wp_get_attachment_url(notion_get_option('notion_logo_light'))) .'" style="height: '.esc_attr($logo_height).';" alt=" '.esc_attr(get_bloginfo('name')).'">';
     } else{
-        $notion_logo_light = '<h3 class="header-logo-light white font-size-05 font-uppercase font-weight-700 text-left">'.get_bloginfo('name').'</h3>';
+        $notion_logo_light = '<h3 class="header-logo-light white font-size-05 font-uppercase font-weight-700 text-left">'.esc_html(get_bloginfo('name')).'</h3>';
     }
 
     if(notion_get_option('notion_logo_dark') !== null && notion_get_option('notion_logo_dark') !== ''){
-        $notion_logo_dark = '<img class="svg-convert header-logo-dark" src="'. esc_url(wp_get_attachment_url(notion_get_option('notion_logo_dark'))) .'" style="height: '.$logo_height.';" alt=" '.esc_attr(get_bloginfo('name')).'">';
+        $notion_logo_dark = '<img class="svg-convert header-logo-dark" src="'. esc_url(wp_get_attachment_url(notion_get_option('notion_logo_dark'))) .'" style="height: '.esc_attr($logo_height).';" alt=" '.esc_attr(get_bloginfo('name')).'">';
     } else{
-        $notion_logo_dark = '<h3 class="header-logo-dark black font-size-05 font-uppercase font-weight-700 text-left">'.get_bloginfo('name').'</h3>';
+        $notion_logo_dark = '<h3 class="header-logo-dark black font-size-05 font-uppercase font-weight-700 text-left">'.esc_html(get_bloginfo('name')).'</h3>';
     }
 
 
-    $logo_block = '<div class="header-logo-wrap"><div class="logo-dark"><a class="svg-logo" href="'.$home_page.'">'.$notion_logo_dark.'</a></div><div class="logo-light"><a class="svg-logo" style="height: '.$logo_height.';" href="'.$home_page.'">'.$notion_logo_light.'</a></div></div>';
+    $logo_block = '<div class="header-logo-wrap"><div class="logo-dark"><a class="svg-logo" href="'.esc_url($home_page).'">'.$notion_logo_dark.'</a></div><div class="logo-light"><a class="svg-logo" style="height: '.esc_attr($logo_height).';" href="'.esc_url($home_page).'">'.$notion_logo_light.'</a></div></div>';
 
     $site_layout = notion_get_option('notion_site_layout');
     if($site_layout === 'site_fluid'){
@@ -192,39 +192,38 @@
 
         // notion_horizontal_header_position
 
-    wp_enqueue_style('notion-style', get_template_directory_uri() . '/stylesheets/main.css', array() , 'all');
-    if ($inline_styles !== '') wp_add_inline_style('notion-style', $inline_styles);
+    
     ?>
 
     <section class="master-wrap-container">
         <section class="master-wrap" id="master-wrap">
 
-            <?php
-                if($header_horizontal === 'header_standard' || $header_horizontal === 'header_center' || $header_horizontal === 'header_split' || $header_horizontal === 'header_hamburger'){
+        <?php
+        if($header_horizontal === 'header_standard' || $header_horizontal === 'header_center' || $header_horizontal === 'header_split' || $header_horizontal === 'header_hamburger'){
 
-                    if($header_animation === 'sticky_header')
-                        $header_animation = 'sticky-header';
-                    elseif($header_animation === 'slide_down_header')
-                        $header_animation = 'slide-down-header';
-                    elseif ($header_animation === 'slide_up_down_header')
-                        $header_animation = 'slide-up-down-header';
-                    else
-                        $header_animation = '';
-            ?>
+            if($header_animation === 'sticky_header')
+                $header_animation = 'sticky-header';
+            elseif($header_animation === 'slide_down_header')
+                $header_animation = 'slide-down-header';
+            elseif ($header_animation === 'slide_up_down_header')
+                $header_animation = 'slide-up-down-header';
+            else
+                $header_animation = '';
+        ?>
 
             <!-- Header : starts -->
-        	<header class="h-header h-header-spacer h-split-header dark-style-header trans-bg animate-header change-style sticky-header <?php echo esc_attr($header_bg_color .' '. $header_animation) ?>" style="top:<?php echo esc_attr(notion_get_option('notion_horizontal_header_position')) ?>">
+        	<header class="h-header h-header-spacer h-split-header dark-style-header trans-bg animate-header change-style sticky-header <?php echo esc_attr($header_bg_color .' '. $header_animation) ?>" style="top:<?php echo esc_attr(notion_get_option('notion_horizontal_header_position')); ?>">
 
         		<!-- Header Inner : starts -->
         		<div class="h-header-container h-header-container-spacer">
 
         			<!-- Header Container : starts -->
-        			<div class="h-header-container-inner <?php esc_html_e($header_content_area_width) ?> ">
+        			<div class="h-header-container-inner <?php echo esc_attr($header_content_area_width); ?> ">
 
         				<!-- Logo : starts -->
-                        <?php echo $logo_block?>
+                        <?php echo $logo_block; ?>
         				<!-- Logo : ends -->
-                    <?php } ?>
+                    
 
                     <?php
                         if($header_horizontal === 'header_standard' || $header_horizontal === 'header_center'){
@@ -257,5 +256,9 @@
                     </div>
                 </div>
             </header>
-                        <section class="full-height" style="background-color:#c3c3c3"></section>
-        <section class="full-height" style="background-color:#c3c3c3"></section>
+        <?php
+        
+        }
+
+        ?>
+            <section class="content-wrap">

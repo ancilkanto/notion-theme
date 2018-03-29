@@ -140,6 +140,21 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 20px;
 }
 
+
+.ease{
+   -webkit-transition: all 0.3s ease-in-out 0s;
+    -moz-transition: all 0.3s ease-in-out 0s;
+    -ms-transition: all 0.3s ease-in-out 0s;
+    -o-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
+}
+
+.transparent-border{
+    border-color: transparent;
+}
+.transparent-border-on-hover{
+    border-color: transparent !important;
+}
 /*----------------------------------------------------------------------------------------------------------------*/
 
 /* COLORS & BACKGROUNDS COLOR */
@@ -1119,4 +1134,262 @@ h1, h2, h3, h4, h5, h6 {
 }
 .notion-liner .notion-line{
   display: inline-block;
+}
+
+
+.notion-button{
+  text-align: center;
+  display: inline-block;
+  border-style: solid;
+  border-width: 1px;
+  position: relative;
+  /*overflow: hidden;*/
+}
+.notion-button:hover{
+  border-color: transparent !important;
+}
+.notion-button span, .notion-button i{
+  display: inline-block;
+  vertical-align: middle;
+}
+.notion-button span + i, .notion-button i + span{
+  padding-left: 8px;
+}
+
+.notion-button span, .notion-button i{
+  position: relative;
+  z-index: 1;
+}
+.notion-button em{
+  position: absolute;
+  z-index: 0;
+  display: inline-block;
+
+  -webkit-transition: all 0.3s ease-in-out 0s;
+    -moz-transition: all 0.3s ease-in-out 0s;
+    -ms-transition: all 0.3s ease-in-out 0s;
+    -o-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
+}
+.notion-button dfn{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    display: inline-block;
+    border-radius: inherit;
+}
+.notion-button.simple-hover-style em{
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+.notion-button.simple-hover-style:hover em{
+  opacity: 1;
+}
+
+
+.notion-button.hover-sft-style em{
+  width: 100%;
+  height: 0;
+  top: 0;
+  left: 0;
+}
+.notion-button.hover-sft-style:hover em{
+  height: 100%;
+}
+
+.notion-button.hover-sfb-style em{
+  width: 100%;
+  height: 0;
+  bottom: 0;
+  left: 0;
+}
+.notion-button.hover-sfb-style:hover em{
+  height: 100%;
+}
+
+.notion-button.hover-sfl-style em{
+  width: 0;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.notion-button.hover-sfl-style:hover em{
+  width: 100%;
+}
+
+.notion-button.hover-sfr-style em{
+  width: 0;
+  height: 100%;
+  top: 0;
+  right: 0;
+}
+.notion-button.hover-sfr-style:hover em{
+  width: 100%;
+}
+
+.notion-button.hover-sh-style em{
+  width: 0;
+  height: 100%;
+  top: 0;
+  left: 50%;
+  opacity: 0;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+.notion-button.hover-sh-style:hover em{
+  width: 100%;
+  opacity: 1;
+}
+
+.notion-button.hover-sv-style em{
+  width: 100%;
+  height: 0;
+  top: 50%;
+  left: 0;
+  opacity: 0;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.notion-button.hover-sv-style:hover em{
+  height: 100%;
+  opacity: 1;
+}
+
+.small-button {
+  padding: 8px 20px;
+}
+
+.normal-size-button{
+  padding: 11px 28px;
+}
+
+.big-button{
+  padding: 18px 42px;
+}
+
+.huge-button{
+  padding: 32px 64px;
+}
+
+.notion-button.square-edge{
+  border-radius:0px;
+}
+
+.notion-button.rouded-edge{
+  border-radius:5px;
+}
+
+.notion-button.side-curved{
+  border-radius: 10em;
+}
+
+.notion-button.circle.small-button{
+  border-radius: 7em;
+  height: 7em;
+  width: 7em;
+  vertical-align: middle;
+  padding: unset;
+  line-height: 7em;
+}
+.notion-button.circle.big-button{
+  border-radius: 9em;
+  height: 9em;
+  width: 9em;
+  vertical-align: middle;
+  padding: unset;
+  line-height: 9em;
+}
+
+.notion-button.circle.huge-button{
+  border-radius: 12em;
+  height: 12em;
+  width: 12em;
+  vertical-align: middle;
+  padding: unset;
+  line-height: 12em;
+}
+
+
+.notion-button.circle.normal-size-button{
+  border-radius: 10em;
+  height: 10em;
+  width: 10em;
+  vertical-align: middle;
+  padding: unset;
+  line-height: 10em;
+}
+
+.notion-button.full-width-button{
+  width: 100%;
+  display: block;
+  clear: both;
+}
+
+
+.notion-button.no-shadow{
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+.notion-button.no-shadow-on-hover:hover{
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.notion-button.shadow-bit{
+  -webkit-box-shadow: 0 4px 10px -5px rgba(0,0,0,.6);
+  -moz-box-shadow: 0 4px 10px -5px rgba(0,0,0,.6);
+  box-shadow: 0 4px 10px -5px rgba(0,0,0,.6);
+}
+.notion-button.shadow-bit-on-hover:hover{
+  -webkit-box-shadow: 0 4px 10px -5px rgba(0,0,0,.6);
+  -moz-box-shadow: 0 4px 10px -5px rgba(0,0,0,.6);
+  box-shadow: 0 4px 10px -5px rgba(0,0,0,.6);
+}
+
+.notion-button.shadow-little{
+    -webkit-box-shadow: 0 4px 18px -4px rgba(0,0,0,.6);
+    -moz-box-shadow: 0 4px 18px -4px rgba(0,0,0,.6);
+    box-shadow: 0 4px 18px -4px rgba(0,0,0,.6);
+}
+
+.notion-button.shadow-little-on-hover:hover{
+    -webkit-box-shadow: 0 4px 18px -4px rgba(0,0,0,.6);
+    -moz-box-shadow: 0 4px 18px -4px rgba(0,0,0,.6);
+    box-shadow: 0 4px 18px -4px rgba(0,0,0,.6);
+}
+
+.notion-button.shadow-more{
+  -webkit-box-shadow: 0 8px 30px -6px rgba(0,0,0,.6);
+  -moz-box-shadow: 0 8px 30px -6px rgba(0,0,0,.6);
+  box-shadow: 0 8px 30px -6px rgba(0,0,0,.6);
+}
+
+.notion-button.shadow-more-on-hover:hover{
+  -webkit-box-shadow: 0 8px 30px -6px rgba(0,0,0,.6);
+  -moz-box-shadow: 0 8px 30px -6px rgba(0,0,0,.6);
+  box-shadow: 0 8px 30px -6px rgba(0,0,0,.6);
+}
+
+.notion-button.shadow-plenty{
+  -webkit-box-shadow: 0 13px 34px -9px rgba(0,0,0,.6);
+  -moz-box-shadow: 0 13px 34px -9px rgba(0,0,0,.6);
+  box-shadow: 0 13px 34px -9px rgba(0,0,0,.6);
+}
+
+.notion-button.shadow-plenty-on-hover:hover{
+  -webkit-box-shadow: 0 13px 34px -9px rgba(0,0,0,.6);
+  -moz-box-shadow: 0 13px 34px -9px rgba(0,0,0,.6);
+  box-shadow: 0 13px 34px -9px rgba(0,0,0,.6);
 }

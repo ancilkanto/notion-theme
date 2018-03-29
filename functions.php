@@ -19,6 +19,9 @@ if (!is_admin()){
   add_action( 'admin_enqueue_scripts', 'notion_admin_styles', '1000' );
 }
 
+
+
+
 function notion_admin_scripts(){
 
   wp_enqueue_script("dropdown-scripts", get_template_directory_uri(). "/admin/js/dropdown.js", array(), false, true);
@@ -40,6 +43,14 @@ function notion_scripts()
     wp_enqueue_script("lib-js", get_template_directory_uri()."/javascripts/library-imports.js", array('jquery'), false, true);
     wp_enqueue_script("preloader-js", get_template_directory_uri()."/javascripts/preloader.js", array(), false, true);
     // wp_enqueue_script( 'ajax-pagination',  get_template_directory_uri() . '/javascripts/ajax-pagination.js', array(), '1.0', true );
+    wp_enqueue_script("jquery-mousewheel", "https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js", array(), false, true);
+    wp_enqueue_script("froogaloop", "https://f.vimeocdn.com/js/froogaloop2.min.js", array(), false, true);
+
+    wp_enqueue_script("picturefill", "https://cdn.jsdelivr.net/picturefill/2.3.1/picturefill.min.js", array(), false, true);
+
+    
+
+
     wp_enqueue_script("main-js", get_template_directory_uri()."/javascripts/main.js", array(), false, true);
     // wp_localize_script( 'ajax-pagination', 'ajaxpagination', array('ajaxurl' => admin_url( 'admin-ajax.php' )));
 }
@@ -168,7 +179,7 @@ function notion_get_font_size()
 
       
 
-      $font_size_array[ $font_size['notion_font_size_id'] ] = $font_size['notion_font_size_title'];
+      $font_size_array[ $font_size['notion_font_size_id'] ] = $font_size['notion_font_size_title'].' '.$font_size['notion_font_size'];
     }
   }else{
     $font_size_array['-'] = 'No font size defined in theme options';
@@ -236,7 +247,7 @@ function notion_custom_css(){
     wp_enqueue_style('custom-style',get_template_directory() . '/stylesheets/custom-style.css');
     require_once(get_template_directory().'/inc/dynamic-style.php');
 
-    $notion_custom_css = notion_generate_absolute_color_style() .' '. esc_html(notion_get_option('notion_ace_css_editor')) .' '. notion_generate_font_style();
+    $notion_custom_css = notion_generate_absolute_color_style() .' '. esc_html(notion_get_option('notion_ace_css_editor')) .' '. notion_generate_font_style() .' '.notion_generate_font_size_style();
 
     wp_add_inline_style( 'custom-style', $notion_custom_css );
 }
