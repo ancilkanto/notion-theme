@@ -57,6 +57,19 @@ jQuery(document).ready(function ($) {
             setTimeout(function () {
                 buildOutline(); //CALL OUTLINE BUILDER
             }, 500);
+
+            // Clone Main Menu to Mobile Header Menu
+            $('.mobile-menu-container').append($('.menu-container').clone());
+
+
+            $('.mobile-nav-button').on('click', function () {
+                $(this).toggleClass('open');
+                $('.mobile-header .menu-container .menu').toggleClass('slide');
+                $('.menu-container li.has-dropdown.sub-menu-open > i').trigger('click');
+            });
+            
+            var mobile_header_height = $('.mobile-header').height();
+            $('.mobile-header .menu-container').css('top', mobile_header_height);
         });
 
         $(document).on('ready', function () {

@@ -195,6 +195,40 @@
     
     ?>
 
+    <div class="mobile-header" style="">
+
+		<!-- Mobile Header Inner : starts -->
+		<div class="mobile-header-inner" style="transform: translate(0px, 0px);">
+
+			<!-- Mobile Header Container : starts -->
+			<div class="mobile-header-container">
+                <!-- Mobile Nav Button : starts -->
+				<div class="header-content-block text-right">
+                    <div class="header-logo-wrap">
+    					<div class="logo-light">
+    						<a href="#">
+    							<img class="logo text-left img-responsive" src="images/logo-light.png" alt="logo" data-rjs="2">
+    						</a>
+    					</div>
+    				</div>
+                    <div class="mobile-menu-Container">
+
+                    </div>
+					<div class="mobile-nav-button-container text-right">
+						<div class="mobile-nav-button"><span></span>
+						</div>
+					</div>
+				</div>
+				<!-- Mobile Nav Button : ends -->
+
+			</div>
+			<!-- Mobile Header Container : ends -->
+
+		</div>
+		<!-- Mobile Header Inner : ends -->
+
+	</div>
+
     <section class="master-wrap-container">
         <section class="master-wrap" id="master-wrap">
 

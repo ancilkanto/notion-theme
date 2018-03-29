@@ -1,6 +1,8 @@
 jQuery(document).ready(function($){
+
     //CS SELECT FIELD STYLES
     $( '.cs-framework.cs-option-framework form select.notion-select' ).selectmenu();
+
 
     // CS SLIDER FIELD
     $( '.cs-field-slider' ).each(function() {
@@ -30,7 +32,6 @@ jQuery(document).ready(function($){
     });
 
 
-
     // UNIQUE NUMBER GENERATOR
     function IDGenerator() {
         this.length = 12;
@@ -50,6 +51,17 @@ jQuery(document).ready(function($){
             return id;
         };
     }
+
+    // ADD UNIQUE ID TO HIGHLIGHT COLOR
+    var highlightColorIdField = $('.cs-element-highlight-color').find('.notion-color-id');
+    if(highlightColorIdField.val() !== ''){
+        // Do Nothing
+    }
+    else {
+        var generator = new IDGenerator();
+        highlightColorIdField.val('notion-color-'+generator.generate());
+    }
+
 
     // ADD UNIQUE ID TO FONT GROUP
     $(document).on('click', '.cs-element-font-family .cs-add-group', function () {
@@ -78,12 +90,14 @@ jQuery(document).ready(function($){
         }, 200);
     });
 
+
     // ONLY ONE CS MAIN NAV OPEN AT A TIME
     $('.cs-nav > ul >li').on('click', function () {
         $('.cs-nav > ul > li').not(this).each(function(){
              $(this).find('ul').slideUp();
          });
     });
+
 
     // CS HEADER STICKY ON SCROLL
     function getCurrentScroll() {
@@ -108,9 +122,68 @@ jQuery(document).ready(function($){
     });
 
 
+    // ADD TITLE TO NEWLY ADDED GROUP
+    var addDynamicTitle = function (e) {
+        var target = $(e.target).find('input[type="text"]');
+        $(target).keyup(function () {
+            var titleBlock =  $(this).closest('.cs-group').find('.cs-group-title'),
+                titleIcon = titleBlock.find('span');
+
+            titleIcon.addClass('class_name');
+            titleBlock.text('Title:'+ ' ' +$(this).val());
+            titleBlock.append(titleIcon);
+        });
+    };
+    $(document).ready(function() {
+        $('body').on("DOMNodeInserted", addDynamicTitle);
+    });
+
+
+    // EDIT TITLE OF EXISTING GROUPS
+    $('.cs-group').each(function () {
+        var titleBlock = $(this).find('.cs-group-title'),
+            titleIcon = titleBlock.find('span');
+        $(this).find('.cs-group-content .cs-fieldset input').keyup(function(){
+           titleBlock.text('Title:'+ ' ' +$(this).val());
+           titleBlock.append(titleIcon);
+       });
+    });
+
+
+    // CAPTURE THEME OPTION SETTINGS CHANGE
+    var formModified = false;
+    $(document).on('change keypress', '#csframework_form :input', function () {
+        formModified = true;
+        $('.cs-save-warning').css({
+            'display': 'inline'
+        });
+    });
+    // SHOWS A MESSAGE WHILE LEAVING THEME OPTION PAGE WITHOUT SAVING
+    window.onload = function() {
+        window.addEventListener("beforeunload", function(e) {
+            if (!formModified) {
+                return undefined;
+            }
+            var confirmationMessage = 'It looks like you have been editing something. ' + 'If you leave before saving, your changes will be lost.';
+            (e || window.event).returnValue = confirmationMessage; //Gecko + IE
+
+            return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
+        });
+    };
+    // CLEAR THEME OPTION SETTINGS CHANGE FLAG
+    $(document).ajaxComplete(function(event, jqxhr, settings) {
+        if(settings.data.indexOf('option_page=_cs_options') != -1){
+            formModified = false;
+        }
+    });
 
 
 
+    $('.cs-option-framework input[id="save"]').on('click', function () {
+        $('.cs-save-warning').css({
+            'display': 'none'
+        });
+    });
 
 
     // SET LOGO HEIGHT USING SLIDER

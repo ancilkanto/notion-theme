@@ -96,7 +96,7 @@ $options[]      = array(
           ),
           'class'              => 'chosen',
           'attributes'         => array(
-            'data-placeholder' => esc_html__('Select Font Weights', 'notion'),
+            'data-placeholder' => esc_html__('Select Multiple Font Weights', 'notion'),
             'multiple'         => 'only-key',
             'style'            => 'width: 200px;'
           ),
@@ -107,7 +107,7 @@ $options[]      = array(
         array(
           'id'    => 'notion_font_id',
           'type'  => 'text',
-          'title' => 'Unique ID',
+          'title' =>  esc_html__('Unique ID', 'notion'),
           'attributes' => array(
             'readonly' => 'only-key'
           ),
@@ -129,7 +129,7 @@ $options[]      = array(
       'id'              => 'notion_font_size_group',
       'type'            => 'group',
       'title'           => esc_html__('Font Sizes', 'notion'),
-      'desc'           => esc_html__('Add all the additional font sizes', 'notion'),
+      'desc'            => esc_html__('Add all the additional font sizes', 'notion'),
       'button_title'    => esc_html__('Add New', 'notion'),
       'accordion_title' => esc_html__('Add New Font Size', 'notion'),
       'fields'          => array(
@@ -148,7 +148,7 @@ $options[]      = array(
         array(
           'id'    => 'notion_font_size_id',
           'type'  => 'text',
-          'title' => 'Unique ID',
+          'title' => esc_html__('Unique ID', 'notion'),
           'attributes' => array(
             'readonly' => 'only-key'
           ),
@@ -158,31 +158,31 @@ $options[]      = array(
         array(
           'type'    => 'notice',
           'class'   => 'info',
-          'content' => 'Kindly provide responsive font sizes here',
+          'content' => esc_html__('Kindly provide responsive font sizes here', 'notion'),
         ),
 
         array(
           'id'          => 'notion_font_size_1024',
           'type'        => 'text',
-          'title'       => esc_html__('For Screen Below 1025 Pixels', 'notion'),
+          'title'       => esc_html__('For Screens Below 1025 Pixels', 'notion'),
         ),
 
         array(
           'id'          => 'notion_font_size_999',
           'type'        => 'text',
-          'title'       => esc_html__('For Screen Below 1000 Pixels', 'notion'),
+          'title'       => esc_html__('For Screens Below 1000 Pixels', 'notion'),
         ),
 
         array(
           'id'          => 'notion_font_size_767',
           'type'        => 'text',
-          'title'       => esc_html__('For Screen Below 768 Pixels', 'notion'),
+          'title'       => esc_html__('For Screens Below 768 Pixels', 'notion'),
         ),
 
         array(
           'id'          => 'notion_font_size_479',
           'type'        => 'text',
-          'title'       => esc_html__('For Screen Below 480 Pixels', 'notion'),
+          'title'       => esc_html__('For Screens Below 480 Pixels', 'notion'),
         ),
       ),
     ),
@@ -199,29 +199,60 @@ $options[]      = array(
   'fields'      => array(
 
     array(
+      'id'        => 'notion_highlight_color',
+      'type'      => 'fieldset',
+      'title'     => esc_html__('Highlight Color', 'notion'),
+      'fields'    => array(
+        array(
+          'id'          => 'notion_highlight_color_title',
+          'type'        => 'text',
+          'title'       => esc_html__('Title', 'notion'),
+        ),
+
+        array(
+          'id'      => 'notion_highlight_color_picker',
+          'type'    => 'color_picker',
+          'title'   => esc_html__('Select Highlight Color', 'notion'),
+          'default' => '#000000',
+        ),
+
+        array(
+          'id'    => 'notion_highlight_color_id',
+          'type'  => 'text',
+          'title' => esc_html__('Unique ID', 'notion'),
+          'attributes' => array(
+            'readonly' => 'only-key'
+          ),
+          'class' => 'notion-color-id'
+        ),
+      ),
+    ),
+
+
+    array(
       'id'              => 'notion_color_palette',
       'type'            => 'group',
-      'title'           => 'Colors',
-      'button_title'    => 'Add New',
-      'accordion_title' => 'Add New Color',
+      'title'           => esc_html__('Colors', 'notion'),
+      'button_title'    => esc_html__('Add New', 'notion'),
+      'accordion_title' => esc_html__('Add New Color', 'notion'),
       'fields'          => array(
         array(
           'id'          => 'notion_color_title',
           'type'        => 'text',
-          'title'       => 'Title',
+          'title'       => esc_html__('Title', 'notion'),
         ),
 
         array(
           'id'      => 'notion_color_picker',
           'type'    => 'color_picker',
-          'title'   => 'Color Picker',
+          'title'   => esc_html__('Select Your Color', 'notion'),
           'default' => '#000000',
         ),
 
         array(
           'id'    => 'notion_color_id',
           'type'  => 'text',
-          'title' => 'Unique ID',
+          'title' => esc_html__('Unique ID', 'notion'),
           'attributes' => array(
             'readonly' => 'only-key'
           ),
@@ -419,6 +450,90 @@ $options[]      = array(
         ),
       ),
     ),
+
+    array(
+      'name'      => 'notion_spacing_options',
+      'title'     => esc_html__('Spacing', 'notion'),
+      'icon'      => 'ion ion-ios-grid-view-outline',
+
+      'fields'      => array(
+        array(
+          'type'    => 'subheading',
+          'content' => esc_html__('Padding Presets', 'notion'),
+        ),
+        array(
+          'id'      => 'notion_padding_1x',
+          'type'    => 'number',
+          'title'   => esc_html__('Padding 1x', 'notion'),
+          'desc'    => esc_html__('Use class "padding-[side]-1x"', 'notion').'<br />'.esc_html__('Possible values of side are top,right,bottom and left', 'notion'),
+          'default' => '18',
+          'after'   => ' <i class="cs-text-muted">(px)</i>',
+        ),
+        array(
+          'id'      => 'notion_padding_2x',
+          'type'    => 'number',
+          'title'   => esc_html__('Padding 2x', 'notion'),
+          'desc'    => esc_html__('Use class "padding-[side]-2x"', 'notion').'<br />'.esc_html__('Possible values of side are top,right,bottom and left', 'notion'),
+          'default' => '35',
+          'after'   => ' <i class="cs-text-muted">(px)</i>',
+        ),
+        array(
+          'id'      => 'notion_padding_3x',
+          'type'    => 'number',
+          'title'   => esc_html__('Padding 3x', 'notion'),
+          'desc'    => esc_html__('Use class "padding-[side]-2x"', 'notion').'<br />'.esc_html__('Possible values of side are top,right,bottom and left', 'notion'),
+          'default' => '70',
+          'after'   => ' <i class="cs-text-muted">(px)</i>',
+        ),
+        array(
+          'id'      => 'notion_padding_4x',
+          'type'    => 'number',
+          'title'   => esc_html__('Padding 4x', 'notion'),
+          'desc'    => esc_html__('Use class "padding-[side]-2x"', 'notion').'<br />'.esc_html__('Possible values of side are top,right,bottom and left', 'notion'),
+          'default' => '140',
+          'after'   => ' <i class="cs-text-muted">(px)</i>',
+        ),
+
+        array(
+          'type'    => 'subheading',
+          'content' => esc_html__('Margin Presets', 'notion'),
+        ),
+
+        array(
+          'id'      => 'notion_margin_1x',
+          'type'    => 'number',
+          'title'   => esc_html__('Margin 1x', 'notion'),
+          'desc'    => esc_html__('Use class "margin-[side]-1x"', 'notion').'<br />'.esc_html__('Possible values of side are top,right,bottom and left', 'notion'),
+          'default' => '18',
+          'after'   => ' <i class="cs-text-muted">(px)</i>',
+        ),
+        array(
+          'id'      => 'notion_margin_2x',
+          'type'    => 'number',
+          'title'   => esc_html__('Margin 2x', 'notion'),
+          'desc'    => esc_html__('Use class "margin-[side]-2x"', 'notion').'<br />'.esc_html__('Possible values of side are top,right,bottom and left', 'notion'),
+          'default' => '35',
+          'after'   => ' <i class="cs-text-muted">(px)</i>',
+        ),
+        array(
+          'id'      => 'notion_margin_3x',
+          'type'    => 'number',
+          'title'   => esc_html__('Margin 3x', 'notion'),
+          'desc'    => esc_html__('Use class "margin-[side]-3x"', 'notion').'<br />'.esc_html__('Possible values of side are top,right,bottom and left', 'notion'),
+          'default' => '70',
+          'after'   => ' <i class="cs-text-muted">(px)</i>',
+        ),
+        array(
+          'id'      => 'notion_margin_4x',
+          'type'    => 'number',
+          'title'   => esc_html__('Margin 4x', 'notion'),
+          'desc'    => esc_html__('Use class "margin-[side]-4x"', 'notion').'<br />'.esc_html__('Possible values of side are top,right,bottom and left', 'notion'),
+          'default' => '140',
+          'after'   => ' <i class="cs-text-muted">(px)</i>',
+        ),
+      ),
+    ),
+
   ),
 );
 
@@ -735,7 +850,55 @@ $options[]   = array(
         'slide_up_down_header'   => esc_html__( 'Hide On Scroll Down / Show On Scroll Up', 'notion' ),
       ),
       'default' => 'slide_up_down_header',
-      // 'dependency' => array( 'notion_header_style', 'any', 'header_standard' ),
+      'dependency' => array( 'notion_site_layout|notion_header_style', 'any|any', 'site_fluid|header_standard,header_center,header_split,header_hamburger' ),
+    ),
+    array(
+      'id'       => 'notion_social_icons',
+      'type'     => 'switcher',
+      'title'    => esc_html__( 'Social Icons', 'notion' ),
+      'desc'     => esc_html__( 'Activate to show social icons', 'notion' ),
+      'default'  => false,
+    ),
+    array(
+      'id'              => 'notion_social_icon_group',
+      'type'            => 'group',
+      'title'           => esc_html__('Add Social Icon', 'notion'),
+      'button_title'    => esc_html__('Add New', 'notion'),
+      'accordion_title' => esc_html__('Add New Icon', 'notion'),
+      'fields'          => array(
+        array(
+          'id'          => 'notion_socil_icon_title',
+          'type'        => 'text',
+          'title'       => esc_html__('Title', 'notion'),
+        ),
+        array(
+          'id'      => 'notion_social_icon',
+          'type'    => 'icon',
+          'title'   => esc_html__('Choose Icon', 'notion'),
+          'default' => 'fa fa-check',
+        ),
+        array(
+          'id'          => 'notion_socil_link',
+          'type'        => 'text',
+          'title'       => esc_html__('Link', 'notion'),
+        ),
+      ),
+      'dependency' => array('notion_social_icons','==','true')
+    ),
+
+    array(
+      'id'       => 'notion_woocommerce_icon',
+      'type'     => 'switcher',
+      'title'    => esc_html__( 'WooCommerce Icon', 'notion' ),
+      'desc'     => esc_html__( 'Activate to show woocommerce icon', 'notion' ),
+      'default'  => false,
+    ),
+    array(
+      'id'       => 'notion_search_icon',
+      'type'     => 'switcher',
+      'title'    => esc_html__( 'Search Icon', 'notion' ),
+      'desc'     => esc_html__( 'Activate to show search icon', 'notion' ),
+      'default'  => false,
     ),
   ),
 );
