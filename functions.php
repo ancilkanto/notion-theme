@@ -147,7 +147,7 @@ function notion_font_setup()
    $font_array = array();
    if($fonts)
      foreach ($fonts as $font) {
-       
+
        if (array_key_exists('notion_font_source_switch', $font)){
          $font_array[ $font['notion_font_id'] ] = $font['notion_custom_font_name'];
        }else{
@@ -166,7 +166,7 @@ function notion_get_font_size()
   if($font_sizes){
     foreach ($font_sizes as $font_size ) {
 
-      
+
 
       $font_size_array[ $font_size['notion_font_size_id'] ] = $font_size['notion_font_size_title'];
     }
@@ -177,11 +177,22 @@ function notion_get_font_size()
   return $font_size_array;
 }
 
-
 function notion_get_color_palette()
 {
   $colors = notion_get_option( 'notion_color_palette' );
+  $highlight_color = notion_get_option( 'notion_highlight_color' );
   $color_array = array();
+
+  if($highlight_color){
+    $highlight_color_title = $highlight_color['notion_highlight_color_title'];
+    $highlight_color_title = strtolower($highlight_color_title);
+    $highlight_color_title = str_replace(' ', '-', $highlight_color_title);
+    $highlight_color_title = preg_replace('/[^A-Za-z0-9\-]/', '', $highlight_color_title);
+
+    $color_array[ $highlight_color_title.'|'.$highlight_color['notion_highlight_color_id'] ] = $highlight_color['notion_highlight_color_picker'];
+
+  }
+
   if($colors)
     foreach ($colors as $color) {
       $title = $color['notion_color_title'];
@@ -197,6 +208,7 @@ function notion_get_color_palette()
     }
   return $color_array;
 }
+
 
 function notion_get_letter_spacings()
 {

@@ -78,6 +78,79 @@
     line-height: 25px;
 }
 
+/* CS BUTTON STYLES */
+.button.button-primary.cs-add-group, .cs-remove-group, .cs-add, .cs-remove-group{
+    border: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    border-radius: 1px !important;
+}
+
+/* CS COLOR PICKER BUTTON STYLES */
+.button.wp-color-result{
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    border-radius: none !important;
+}
+.wp-color-result-text{
+    font-weight: 600;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    border-radius: 0 !important;
+}
+
+/* REMOVED CS FIELDS BOX-SHADOW */
+input[type=text], input[type=search], input[type=radio], input[type=tel], input[type=time], input[type=url], input[type=week], input[type=password], input[type=checkbox], input[type=color], input[type=date], input[type=datetime], input[type=datetime-local], input[type=email], input[type=month], input[type=number], select, textarea{
+    box-shadow: none;
+}
+
+/* CS NAV SUB MENU STYLE */
+.cs-framework .cs-nav ul ul li a{
+    padding-left: 8px;
+    margin-left: 16px;
+}
+
+/* CS HEADER STYLES */
+.cs-framework .cs-header{
+    z-index: 99;
+}
+.cs-header-fixed{
+    position: fixed !important;
+    top: 32px !important;
+}
+.cs-nav.cs-pos-adjustment{
+    margin-top: 0;
+}
+.cs-content.cs-pos-adjustment{
+    margin-top: 106px;
+}
+@media (max-width: 782px) {
+    .cs-pos-adjustment{
+        margin-top: 118px;
+    }
+}
+
+
+/* CS AJAX SAVE WARNING */
+.cs-save-warning{
+    display: none;
+    position: relative;
+    top: 8px;
+    right: 5px;
+    font-size: 12px;
+    padding: 3px 8px;
+    color: #000;
+    background-color: #fcd200;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+}
+
+/* CS SETTINGS SAVED MESSAGE */
+#cs-save-ajax{
+    top: 8px;
+}
+
 /* DROPDOWN JS STYLES */
 .dropdownjs{
     width: 60%;
@@ -96,6 +169,7 @@
 .fakebg{
     position: unset;
 }
+
 
 .notion_text_block_wrpop .wp-editor-tools, .notion_text_block_wrpop .mce-toolbar-grp, .notion_text_block_wrpop .quicktags-toolbar{
     display: none;
